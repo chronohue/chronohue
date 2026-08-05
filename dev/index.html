@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>circahue · circadian playground</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div id="app">
+      <header class="top">
+        <div class="brand">
+          <div class="mark" id="brandMark">L</div>
+          <div>
+            <h1>circahue</h1>
+            <p class="sub">circadian hue playground · sun / moon / timezone</p>
+          </div>
+        </div>
+        <div class="top-meta">
+          <span id="phasePill" class="pill">—</span>
+          <span id="clockReadout" class="mono">—</span>
+        </div>
+      </header>
+
+      <section class="controls panel">
+        <div class="field">
+          <label for="place">Место</label>
+          <select id="place"></select>
+        </div>
+        <div class="field">
+          <label for="tz">Часовой пояс</label>
+          <select id="tz"></select>
+        </div>
+        <div class="field">
+          <label for="lat">Широта °</label>
+          <input id="lat" type="number" step="0.01" min="-90" max="90" />
+        </div>
+        <div class="field">
+          <label for="date">Дата</label>
+          <input id="date" type="date" />
+        </div>
+        <div class="field grow">
+          <label>Сезон (интенсивность glow)</label>
+          <div class="seg" id="seasonSeg"></div>
+        </div>
+        <div class="field">
+          <label class="check">
+            <input id="liveClock" type="checkbox" checked />
+            Живые часы (зона)
+          </label>
+        </div>
+      </section>
+
+      <main class="stage">
+        <aside class="dial-col panel">
+          <div class="panel-title">Время суток</div>
+          <div id="dial" class="dial" title="Тяни стрелку или кликни по часу">
+            <div id="dialTicks"></div>
+            <div id="needle" class="needle"></div>
+            <div id="hub" class="hub"></div>
+          </div>
+          <div id="dialHour" class="dial-hour mono">12:00</div>
+          <input id="hourRange" type="range" min="0" max="23.99" step="0.01" value="12" />
+          <button id="nowBtn" type="button" class="ghost">Сейчас в выбранной зоне</button>
+        </aside>
+
+        <section class="chart-col panel">
+          <div class="chart-head">
+            <div>
+              <div class="panel-title" id="chartTitle">—</div>
+              <div class="legend">
+                <span class="dot sun"></span>Солнце
+                <span class="dot moon"></span>Луна
+                <span class="dot horizon"></span>Горизонт
+              </div>
+            </div>
+            <div class="swatch-wrap">
+              <div id="swatch" class="swatch"></div>
+              <div class="swatch-meta mono">
+                <div id="accentHex">#------</div>
+                <div id="accentRgb">—</div>
+              </div>
+            </div>
+          </div>
+
+          <div id="arcStack" class="arc-stack">
+            <svg id="sunSvg" viewBox="0 0 300 286" preserveAspectRatio="none">
+              <line id="horizon1" x1="0" x2="300" y1="97" y2="97" />
+              <path id="sunPath" d="" />
+            </svg>
+            <svg id="moonSvg" viewBox="0 0 300 286" preserveAspectRatio="none">
+              <line id="horizon2" x1="0" x2="300" y1="97" y2="97" />
+              <path id="moonPath" d="" />
+            </svg>
+            <div id="sunMarker" class="body sun-body"></div>
+            <div id="moonMarker" class="body moon-body">
+              <div id="moonFill" class="moon-fill"></div>
+            </div>
+            <div id="nowLine" class="now-line"></div>
+          </div>
+          <div class="axis mono"><span>00</span><span>06</span><span>12</span><span>18</span><span>24</span></div>
+          <p id="caption" class="caption">—</p>
+        </section>
+
+        <aside class="reality panel">
+          <div class="panel-title">Проверка «на реальность»</div>
+          <p class="hint">
+            Модель: local solar hour ≈ wall clock в зоне, altitude @ latitude.
+            Не полный эфемерис (нет уравнения времени) — сравнивай форму дня и
+            порядок восхода/заката.
+          </p>
+          <dl class="facts mono" id="facts"></dl>
+          <div class="compare">
+            <div class="panel-title sm">Accent stops</div>
+            <div id="stopStrip" class="stop-strip"></div>
+          </div>
+        </aside>
+      </main>
+
+      <footer class="foot mono">
+        circahue dev · isamarin × BLMK ·
+        <kbd>npm run dev</kbd>
+      </footer>
+    </div>
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>
