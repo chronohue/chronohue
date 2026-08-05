@@ -1,6 +1,6 @@
 {
   "name": "@igrs/circahue",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Circadian accent hues from clock time, season, and latitude — pure TypeScript, zero DOM",
   "type": "module",
   "main": "./dist/index.cjs",
