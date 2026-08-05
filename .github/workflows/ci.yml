@@ -46,7 +46,7 @@ jobs:
         run: |
           npm pack --dry-run
           npm pack
-          tar -tzf circahue-*.tgz | head -40
+          tar -tzf igrs-circahue-*.tgz | head -40
 
   test:
     name: Test (Node ${{ matrix.node }})

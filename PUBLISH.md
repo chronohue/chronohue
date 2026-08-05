@@ -1,7 +1,10 @@
-# How to publish **circahue**
+# How to publish **@igrs/circahue**
 
-Package name on npm: **`circahue`**  
-Repo: https://github.com/isamarin/circahue
+|                  |                                        |
+| ---------------- | -------------------------------------- |
+| **npm package**  | `@igrs/circahue`                       |
+| **Organization** | [igrs](https://www.npmjs.com/org/igrs) |
+| **GitHub**       | https://github.com/isamarin/circahue   |
 
 ---
 
@@ -10,39 +13,36 @@ Repo: https://github.com/isamarin/circahue
 ### GitHub
 
 ```bash
-cd /path/to/circahue   # this project (folder may still be light-hue locally)
+cd /path/to/circahue   # local folder may still be light-hue
 git remote -v
-# should be: https://github.com/isamarin/circahue.git
-```
-
-If the remote is empty or wrong:
-
-```bash
-git remote add origin https://github.com/isamarin/circahue.git
-# or
-git remote set-url origin https://github.com/isamarin/circahue.git
-```
-
-Push `main` (first time):
-
-```bash
+# → https://github.com/isamarin/circahue.git
 git push -u origin main
 ```
 
-### npm account
+### npm organization **igrs**
 
-1. Create / log in: https://www.npmjs.com/signup
-2. Enable **2FA** (recommended).
-3. Create an **Automation** token (or granular token with **Publish** on `circahue`):  
-   https://www.npmjs.com/settings/~/tokens
-4. In GitHub repo → **Settings → Secrets and variables → Actions**:
-   - Name: `NPM_TOKEN`
-   - Value: the token
-5. (Optional) Add a GitHub Environment named `npm` and set `environment: npm` on the publish job for protection rules.
+1. Create org (if needed): https://www.npmjs.com/org/create → name **`igrs`**
+2. Add yourself as **owner** or member with **publish** rights
+3. Log in: `npm login` → `npm whoami`
+4. Confirm access:
 
-### Claim the package name (first publish)
+```bash
+npm org ls igrs
+# or open https://www.npmjs.com/settings/igrs/packages
+```
 
-Either CI on first tag, or once by hand:
+5. Create an **Automation** token (or granular token with:
+   - **Read and write** packages
+   - scope / packages under **`@igrs/*`** or org **igrs**)  
+     https://www.npmjs.com/settings/~/tokens
+
+6. GitHub → repo **Settings → Secrets and variables → Actions**:
+   - Secret name: **`NPM_TOKEN`**
+   - Value: that token (must be allowed to publish under `@igrs`)
+
+> Scoped public packages still need `--access public` on first publish (already in `publishConfig` + CI).
+
+### Claim the package (first publish)
 
 ```bash
 npm login
@@ -50,115 +50,69 @@ npm whoami
 npm publish --access public
 ```
 
-Name `circahue` must be free: https://www.npmjs.com/package/circahue
+Page after publish: https://www.npmjs.com/package/@igrs/circahue
 
 ---
 
-## 1. Release a new version (recommended: tag → CI)
+## 1. Release a new version (tag → CI)
 
 ```bash
-# 1) bump version in package.json (semver)
-npm version patch   # 0.1.0 → 0.1.1  (creates commit + tag v0.1.1)
-# or: npm version minor / major
-# or edit package.json manually, then:
-#    git add package.json package-lock.json
-#    git commit -m "chore: release 0.1.1"
-#    git tag v0.1.1
-
-# 2) push commit + tag
+npm version patch   # bumps package.json, commit, tag vX.Y.Z
 git push origin main --tags
 ```
 
-GitHub Action **Release** runs on `v*` tags:
+**Release** workflow on `v*`:
 
-- typecheck + test + build
-- checks tag `vX.Y.Z` == `package.json` version
+- quality gate (typecheck, eslint, prettier, test, build, publint)
+- tag version == `package.json`
 - `npm publish --access public --provenance`
-
-Watch: **Actions** tab on the repo.
 
 ---
 
-## 2. Manual publish (without CI)
+## 2. Manual publish
 
 ```bash
 npm ci
-npm run typecheck && npm test && npm run build
+npm run quality
 npm publish --access public
-# with provenance (npm 9.5+ / Node 20+ on CI is easier):
-# npm publish --access public --provenance
 ```
 
 ---
 
-## 3. Where else to publish / distribute
-
-| Channel             | What to do                       | Notes                                                       |
-| ------------------- | -------------------------------- | ----------------------------------------------------------- |
-| **npm**             | `npm publish` / Release workflow | Primary. Install: `npm i circahue`                          |
-| **GitHub repo**     | push source                      | Source of truth + Actions                                   |
-| **jsDelivr**        | automatic from npm               | `https://cdn.jsdelivr.net/npm/circahue@0.1.0/dist/index.js` |
-| **unpkg**           | automatic from npm               | `https://unpkg.com/circahue@0.1.0/dist/index.js`            |
-| **GitHub Packages** | optional second registry         | Usually skip if npm is enough                               |
-| **JSR** (jsr.io)    | optional later                   | Deno/modern TS registry; not required day one               |
-| **Playground demo** | GitHub Pages / Cloudflare Pages  | Host `dev/` build if you want a public lab                  |
-
-**Consumers (Node / bundlers):**
+## 3. Install / CDN
 
 ```bash
-npm install circahue
-# pnpm add circahue
-# yarn add circahue
+npm install @igrs/circahue
+# pnpm add @igrs/circahue
+# yarn add @igrs/circahue
 ```
 
 ```ts
-import { sampleLightHue, applyCssVars } from "circahue";
+import { sampleLightHue, applyCssVars } from "@igrs/circahue";
 ```
 
-**CDN (browser ESM, no bundler):**
-
-```html
-<script type="module">
-  import { sampleLightHue } from "https://cdn.jsdelivr.net/npm/circahue@0.1.0/+esm";
-  console.log(sampleLightHue({ hourOverride: 18 }).accent.hex);
-</script>
-```
+| Channel  | URL                                                      |
+| -------- | -------------------------------------------------------- |
+| npm      | https://www.npmjs.com/package/@igrs/circahue             |
+| jsDelivr | `https://cdn.jsdelivr.net/npm/@igrs/circahue@0.1.0/+esm` |
+| unpkg    | `https://unpkg.com/@igrs/circahue@0.1.0/dist/index.js`   |
 
 ---
 
-## 4. Checklist before first public release
+## 4. Checklist
 
-- [ ] `package.json` name is `circahue`, version correct
-- [ ] `LICENSE` present (MIT)
-- [ ] README install line uses `circahue`
-- [ ] `npm pack --dry-run` only shows `dist/`, README, LICENSE (no `src`/`tests` unless you want them)
-- [ ] GitHub secret `NPM_TOKEN` set
-- [ ] First push to `main`, CI green (`Quality`: typecheck, eslint, prettier, tests, publint)
-- [ ] Tag `v0.1.0` and confirm npm page: https://www.npmjs.com/package/circahue
+- [ ] Org **igrs** exists; you can publish
+- [ ] `package.json` `"name": "@igrs/circahue"`, `publishConfig.access: "public"`
+- [ ] `NPM_TOKEN` on GitHub has org publish rights
+- [ ] CI green on `main`
+- [ ] Tag `v0.1.0` → package page shows `@igrs/circahue`
 
 ---
 
-## 5. Scoped alternative (if `circahue` is taken)
-
-```json
-"name": "@isamarin/circahue"
-```
+## 5. Local folder name
 
 ```bash
-npm publish --access public
+mv ~/IGRS/light-hue ~/IGRS/circahue   # optional
 ```
 
-Update `publishConfig` and install docs accordingly.
-
----
-
-## 6. Local folder name
-
-Code lived under `IGRS/light-hue` during development. Optional rename:
-
-```bash
-mv ~/IGRS/light-hue ~/IGRS/circahue
-cd ~/IGRS/circahue
-```
-
-Does not affect npm package name.
+Does not affect the npm name `@igrs/circahue`.

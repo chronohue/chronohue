@@ -3,21 +3,21 @@
 **Circadian accent hues** from clock time, season, and observer latitude.
 
 Pure TypeScript — **no DOM, no React, zero runtime deps**.  
-Born as the Luminat “living light” accent (code name _light-hue_); public name **circahue**.
+Born as the Luminat “living light” accent (code name _light-hue_); npm package **`@igrs/circahue`**.
 
 [![CI](https://github.com/isamarin/circahue/actions/workflows/ci.yml/badge.svg)](https://github.com/isamarin/circahue/actions/workflows/ci.yml)
-[![npm](https://img.shields.io/npm/v/circahue.svg)](https://www.npmjs.com/package/circahue)
+[![npm](https://img.shields.io/npm/v/@igrs/circahue.svg)](https://www.npmjs.com/package/@igrs/circahue)
 
 ## Install
 
 ```bash
-npm install circahue
+npm install @igrs/circahue
 ```
 
 ## Quick start
 
 ```ts
-import { sampleLightHue, applyCssVars, createLightHueTicker } from "circahue";
+import { sampleLightHue, applyCssVars, createLightHueTicker } from "@igrs/circahue";
 
 const snap = sampleLightHue({
   latitude: 57.63, // e.g. Yaroslavl
