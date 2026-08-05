@@ -31,13 +31,13 @@ git push -u origin main
 
 ### npm account
 
-1. Create / log in: https://www.npmjs.com/signup  
-2. Enable **2FA** (recommended).  
+1. Create / log in: https://www.npmjs.com/signup
+2. Enable **2FA** (recommended).
 3. Create an **Automation** token (or granular token with **Publish** on `circahue`):  
-   https://www.npmjs.com/settings/~/tokens  
-4. In GitHub repo → **Settings → Secrets and variables → Actions**:  
-   - Name: `NPM_TOKEN`  
-   - Value: the token  
+   https://www.npmjs.com/settings/~/tokens
+4. In GitHub repo → **Settings → Secrets and variables → Actions**:
+   - Name: `NPM_TOKEN`
+   - Value: the token
 5. (Optional) Add a GitHub Environment named `npm` and set `environment: npm` on the publish job for protection rules.
 
 ### Claim the package name (first publish)
@@ -71,8 +71,8 @@ git push origin main --tags
 
 GitHub Action **Release** runs on `v*` tags:
 
-- typecheck + test + build  
-- checks tag `vX.Y.Z` == `package.json` version  
+- typecheck + test + build
+- checks tag `vX.Y.Z` == `package.json` version
 - `npm publish --access public --provenance`
 
 Watch: **Actions** tab on the repo.
@@ -93,15 +93,15 @@ npm publish --access public
 
 ## 3. Where else to publish / distribute
 
-| Channel | What to do | Notes |
-|--------|------------|--------|
-| **npm** | `npm publish` / Release workflow | Primary. Install: `npm i circahue` |
-| **GitHub repo** | push source | Source of truth + Actions |
-| **jsDelivr** | automatic from npm | `https://cdn.jsdelivr.net/npm/circahue@0.1.0/dist/index.js` |
-| **unpkg** | automatic from npm | `https://unpkg.com/circahue@0.1.0/dist/index.js` |
-| **GitHub Packages** | optional second registry | Usually skip if npm is enough |
-| **JSR** (jsr.io) | optional later | Deno/modern TS registry; not required day one |
-| **Playground demo** | GitHub Pages / Cloudflare Pages | Host `dev/` build if you want a public lab |
+| Channel             | What to do                       | Notes                                                       |
+| ------------------- | -------------------------------- | ----------------------------------------------------------- |
+| **npm**             | `npm publish` / Release workflow | Primary. Install: `npm i circahue`                          |
+| **GitHub repo**     | push source                      | Source of truth + Actions                                   |
+| **jsDelivr**        | automatic from npm               | `https://cdn.jsdelivr.net/npm/circahue@0.1.0/dist/index.js` |
+| **unpkg**           | automatic from npm               | `https://unpkg.com/circahue@0.1.0/dist/index.js`            |
+| **GitHub Packages** | optional second registry         | Usually skip if npm is enough                               |
+| **JSR** (jsr.io)    | optional later                   | Deno/modern TS registry; not required day one               |
+| **Playground demo** | GitHub Pages / Cloudflare Pages  | Host `dev/` build if you want a public lab                  |
 
 **Consumers (Node / bundlers):**
 
@@ -128,13 +128,13 @@ import { sampleLightHue, applyCssVars } from "circahue";
 
 ## 4. Checklist before first public release
 
-- [ ] `package.json` name is `circahue`, version correct  
-- [ ] `LICENSE` present (MIT)  
-- [ ] README install line uses `circahue`  
-- [ ] `npm pack --dry-run` only shows `dist/`, README, LICENSE (no `src`/`tests` unless you want them)  
-- [ ] GitHub secret `NPM_TOKEN` set  
-- [ ] First push to `main`, CI green  
-- [ ] Tag `v0.1.0` and confirm npm page: https://www.npmjs.com/package/circahue  
+- [ ] `package.json` name is `circahue`, version correct
+- [ ] `LICENSE` present (MIT)
+- [ ] README install line uses `circahue`
+- [ ] `npm pack --dry-run` only shows `dist/`, README, LICENSE (no `src`/`tests` unless you want them)
+- [ ] GitHub secret `NPM_TOKEN` set
+- [ ] First push to `main`, CI green (`Quality`: typecheck, eslint, prettier, tests, publint)
+- [ ] Tag `v0.1.0` and confirm npm page: https://www.npmjs.com/package/circahue
 
 ---
 

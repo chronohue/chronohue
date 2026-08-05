@@ -9,13 +9,7 @@ import {
   rgbToHex,
   wrapHour,
 } from "./math.js";
-import {
-  moonAgeDays,
-  moonDeclination,
-  moonEffHour,
-  moonPhase,
-  SYNODIC_MONTH,
-} from "./moon.js";
+import { moonAgeDays, moonDeclination, moonEffHour, moonPhase, SYNODIC_MONTH } from "./moon.js";
 import { dayPhase, phaseLabel } from "./phase.js";
 import { seasonFactor, seasonShape, sunDiscRadius } from "./season.js";
 import { DEFAULT_LATITUDE, solarAltitude, solarDeclination } from "./solar.js";
@@ -170,9 +164,7 @@ export function sampleLightHue(opts: LightHueOptions = {}): LightHueSnapshot {
       season,
       at,
       dayOfYear: doy,
-      ...(timeZone
-        ? { timeZone: zoned?.timeZone ?? timeZone, offsetLabel }
-        : {}),
+      ...(timeZone ? { timeZone: zoned?.timeZone ?? timeZone, offsetLabel } : {}),
     },
   };
 

@@ -16,10 +16,9 @@ export const CSS_VAR_KEYS = [
 export type LightHueCssVar = (typeof CSS_VAR_KEYS)[number];
 
 /** Build the cssVars map from a computed snapshot (or partial accent/glow/ring). */
-export function buildCssVars(snap: Pick<
-  LightHueSnapshot,
-  "accent" | "accentHover" | "accentDim" | "glow" | "ring"
->): Record<string, string> {
+export function buildCssVars(
+  snap: Pick<LightHueSnapshot, "accent" | "accentHover" | "accentDim" | "glow" | "ring">,
+): Record<string, string> {
   return {
     "--accent-primary": snap.accent.hex,
     "--accent-primary-hover": snap.accentHover,

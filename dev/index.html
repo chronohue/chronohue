@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
   <head>
     <meta charset="UTF-8" />
@@ -69,8 +69,7 @@
             <div>
               <div class="panel-title" id="chartTitle">—</div>
               <div class="legend">
-                <span class="dot sun"></span>Солнце
-                <span class="dot moon"></span>Луна
+                <span class="dot sun"></span>Солнце <span class="dot moon"></span>Луна
                 <span class="dot horizon"></span>Горизонт
               </div>
             </div>
@@ -98,16 +97,17 @@
             </div>
             <div id="nowLine" class="now-line"></div>
           </div>
-          <div class="axis mono"><span>00</span><span>06</span><span>12</span><span>18</span><span>24</span></div>
+          <div class="axis mono">
+            <span>00</span><span>06</span><span>12</span><span>18</span><span>24</span>
+          </div>
           <p id="caption" class="caption">—</p>
         </section>
 
         <aside class="reality panel">
           <div class="panel-title">Проверка «на реальность»</div>
           <p class="hint">
-            Модель: local solar hour ≈ wall clock в зоне, altitude @ latitude.
-            Не полный эфемерис (нет уравнения времени) — сравнивай форму дня и
-            порядок восхода/заката.
+            Модель: local solar hour ≈ wall clock в зоне, altitude @ latitude. Не полный эфемерис
+            (нет уравнения времени) — сравнивай форму дня и порядок восхода/заката.
           </p>
           <dl class="facts mono" id="facts"></dl>
           <div class="compare">

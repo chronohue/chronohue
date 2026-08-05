@@ -5,14 +5,7 @@ export type SeasonMode = "auto" | "winter" | "mid" | "summer";
  * Day-phase label derived from local solar-hour (not civil twilight).
  * Matches the design prototype phase bands.
  */
-export type DayPhase =
-  | "night"
-  | "dawn"
-  | "morning"
-  | "zenith"
-  | "day"
-  | "sunset"
-  | "dusk";
+export type DayPhase = "night" | "dawn" | "morning" | "zenith" | "day" | "sunset" | "dusk";
 
 export type Rgb = readonly [number, number, number];
 

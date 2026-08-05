@@ -10,8 +10,47 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  quality:
+    name: Quality
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: ESLint
+        run: npm run lint
+
+      - name: Prettier
+        run: npm run format:check
+
+      - name: Test
+        run: npm test
+
+      - name: Build
+        run: npm run build
+
+      - name: Publint (package quality)
+        run: npx publint
+
+      - name: npm pack (inspect tarball)
+        run: |
+          npm pack --dry-run
+          npm pack
+          tar -tzf circahue-*.tgz | head -40
+
   test:
     name: Test (Node ${{ matrix.node }})
+    needs: quality
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -28,9 +67,6 @@ jobs:
       - name: Install
         run: npm ci
 
-      - name: Typecheck
-        run: npm run typecheck
-
       - name: Test
         run: npm test
 
@@ -45,21 +81,3 @@ jobs:
             if (!s.accent.hex.startsWith('#')) throw new Error('bad accent');
             console.log('ok', s.phaseLabel, s.accent.hex);
           "
-
-  package:
-    name: Pack dry-run
-    runs-on: ubuntu-latest
-    needs: test
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: npm
-      - run: npm ci
-      - run: npm run build
-      - name: npm pack (inspect tarball)
-        run: |
-          npm pack --dry-run
-          npm pack
-          tar -tzf circahue-*.tgz | head -40

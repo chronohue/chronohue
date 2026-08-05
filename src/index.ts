@@ -11,11 +11,7 @@ export { createLightHueTicker } from "./ticker.js";
 export { applyCssVars, buildCssVars, CSS_VAR_KEYS } from "./css.js";
 export { lightAt, DAY_STOPS } from "./stops.js";
 export { seasonFactor, seasonShape, sunDiscRadius, sunMarkerDiameter } from "./season.js";
-export {
-  solarDeclination,
-  solarAltitude,
-  DEFAULT_LATITUDE,
-} from "./solar.js";
+export { solarDeclination, solarAltitude, DEFAULT_LATITUDE } from "./solar.js";
 export {
   moonAgeDays,
   moonPhase,

@@ -28,12 +28,11 @@ html,
 body {
   margin: 0;
   min-height: 100%;
-  background:
-    radial-gradient(
-      900px circle at 50% -20%,
-      color-mix(in srgb, rgb(var(--light-hue-glow-rgb)) 18%, #24272d),
-      #0c0d0f 62%
-    );
+  background: radial-gradient(
+    900px circle at 50% -20%,
+    color-mix(in srgb, rgb(var(--light-hue-glow-rgb)) 18%, #24272d),
+    #0c0d0f 62%
+  );
   color: var(--text);
   font-family: var(--font-sans);
 }
@@ -73,7 +72,9 @@ body {
   box-shadow:
     0 0 var(--light-hue-glow-blur) rgba(var(--light-hue-glow-rgb), var(--light-hue-glow-alpha)),
     0 0 0 1.5px rgba(var(--light-hue-ring-rgb), var(--light-hue-ring-alpha));
-  transition: background 0.4s var(--ease), box-shadow 0.4s var(--ease);
+  transition:
+    background 0.4s var(--ease),
+    box-shadow 0.4s var(--ease);
 }
 
 h1 {
@@ -99,7 +100,8 @@ h1 {
   border-radius: 999px;
   border: 1.5px solid rgba(var(--light-hue-ring-rgb), var(--light-hue-ring-alpha));
   background: color-mix(in srgb, rgb(var(--light-hue-glow-rgb)) 12%, var(--surface-elevated));
-  box-shadow: 0 0 calc(var(--light-hue-glow-blur) * 0.8) rgba(var(--light-hue-glow-rgb), calc(var(--light-hue-glow-alpha) * 0.8));
+  box-shadow: 0 0 calc(var(--light-hue-glow-blur) * 0.8)
+    rgba(var(--light-hue-glow-rgb), calc(var(--light-hue-glow-alpha) * 0.8));
   font-weight: 600;
   font-size: 0.85rem;
   transition: all 0.4s var(--ease);
@@ -203,7 +205,10 @@ input:focus {
   font: inherit;
   font-size: 0.82rem;
   cursor: pointer;
-  transition: background 0.2s var(--ease), border-color 0.2s var(--ease), color 0.2s var(--ease);
+  transition:
+    background 0.2s var(--ease),
+    border-color 0.2s var(--ease),
+    color 0.2s var(--ease);
 }
 
 .seg button.active,
@@ -256,7 +261,9 @@ input:focus {
   border-radius: 50%;
   background: var(--border);
   cursor: pointer;
-  transition: background 0.2s var(--ease), box-shadow 0.2s var(--ease);
+  transition:
+    background 0.2s var(--ease),
+    box-shadow 0.2s var(--ease);
 }
 
 .tick.major {
@@ -374,7 +381,9 @@ input:focus {
   box-shadow:
     0 0 var(--light-hue-glow-blur) rgba(var(--light-hue-glow-rgb), var(--light-hue-glow-alpha)),
     inset 0 1px 0 rgba(255, 255, 255, 0.25);
-  transition: background 0.4s var(--ease), box-shadow 0.4s var(--ease);
+  transition:
+    background 0.4s var(--ease),
+    box-shadow 0.4s var(--ease);
 }
 
 .swatch-meta {

@@ -27,23 +27,17 @@ export function buildArcs(input: ArcInput): ArcGeometry {
 
   const sunY = (h: number) =>
     horizonY - solarAltitude(h, input.sunDeclinationDeg, input.latitude) * pxPerDeg;
-  const moonY = (h: number) =>
-    horizonY - solarAltitude(h, declMoon, input.latitude) * pxPerDeg;
+  const moonY = (h: number) => horizonY - solarAltitude(h, declMoon, input.latitude) * pxPerDeg;
 
   const samples = Array.from({ length: 49 }, (_, i) => i / 2);
   const sunPath =
     "M" +
-    samples
-      .map((h) => `${((h / 24) * ARC_WIDTH).toFixed(1)},${sunY(h).toFixed(1)}`)
-      .join(" L ");
+    samples.map((h) => `${((h / 24) * ARC_WIDTH).toFixed(1)},${sunY(h).toFixed(1)}`).join(" L ");
   // path y = moonY(x_hour − 6) so the marker rides the curve
   const moonPath =
     "M" +
     samples
-      .map(
-        (h) =>
-          `${((h / 24) * ARC_WIDTH).toFixed(1)},${moonY(h - MOON_HOUR_OFFSET).toFixed(1)}`,
-      )
+      .map((h) => `${((h / 24) * ARC_WIDTH).toFixed(1)},${moonY(h - MOON_HOUR_OFFSET).toFixed(1)}`)
       .join(" L ");
 
   const sunX = (input.hour / 24) * ARC_WIDTH;

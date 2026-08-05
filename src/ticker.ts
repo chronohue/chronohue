@@ -17,7 +17,7 @@ export function createLightHueTicker(
   opts: TickerOptions = {},
 ): LightHueTicker {
   const { intervalMs = 60_000, ...sampleOpts } = opts;
-  let currentOpts: LightHueOptions = { ...sampleOpts };
+  const currentOpts: LightHueOptions = { ...sampleOpts };
 
   const fire = (): LightHueSnapshot => {
     const snap = sampleLightHue(currentOpts);

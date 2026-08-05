@@ -121,7 +121,6 @@ const el = {
 let season: SeasonMode = "auto";
 /** null = follow live wall clock in selected TZ */
 let hourOverride: number | null = null;
-let rafLive = 0;
 
 // ── Init controls ───────────────────────────────────────────────────────────
 
@@ -257,8 +256,7 @@ function render() {
     hourOverride = null;
   }
 
-  const hour =
-    hourOverride != null ? hourOverride : nowInZoneWallHour();
+  const hour = hourOverride != null ? hourOverride : nowInZoneWallHour();
 
   // keep range in sync when live
   if (live) {
@@ -356,9 +354,7 @@ function paint(snap: LightHueSnapshot, timeZone: string, live: boolean) {
     ["Glow α / blur", `${snap.glow.alpha.toFixed(2)} / ${snap.glow.blur.toFixed(1)}px`],
   ];
 
-  el.facts.innerHTML = rows
-    .map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`)
-    .join("");
+  el.facts.innerHTML = rows.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("");
 
   // highlight stop under cursor hour
   const atStop = lightAt(snap.hour);
@@ -447,7 +443,7 @@ function bind() {
   // live tick
   const tick = () => {
     if (el.liveClock.checked) render();
-    rafLive = window.setTimeout(tick, 1000) as unknown as number;
+    window.setTimeout(tick, 1000);
   };
   tick();
 }

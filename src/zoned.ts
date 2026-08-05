@@ -20,10 +20,7 @@ export interface ZonedParts {
   timeZone: string;
 }
 
-function part(
-  parts: Intl.DateTimeFormatPart[],
-  type: Intl.DateTimeFormatPartTypes,
-): string {
+function part(parts: Intl.DateTimeFormatPart[], type: Intl.DateTimeFormatPartTypes): string {
   return parts.find((p) => p.type === type)?.value ?? "0";
 }
 
@@ -66,7 +63,8 @@ export function zonedParts(at: Date, timeZone?: string): ZonedParts {
   const hour = Number(part(parts, "hour"));
   const minute = Number(part(parts, "minute"));
   const second = Number(part(parts, "second"));
-  const offsetLabel = part(parts, "timeZoneName") || "GMT";
+  const offsetRaw = part(parts, "timeZoneName");
+  const offsetLabel = offsetRaw ? offsetRaw : "GMT";
 
   // day-of-year via UTC noon trick on calendar y/m/d (avoids DST edge on local Date)
   const start = Date.UTC(year, 0, 0);
@@ -99,7 +97,7 @@ export function localHourInTimeZone(at: Date, timeZone?: string): number {
 export function offsetHoursInTimeZone(at: Date, timeZone?: string): number {
   const label = zonedParts(at, timeZone).offsetLabel;
   // "GMT", "GMT+3", "GMT-5", "GMT+5:30"
-  const m = label.match(/GMT([+-])(\d{1,2})(?::(\d{2}))?/i);
+  const m = /GMT([+-])(\d{1,2})(?::(\d{2}))?/i.exec(label);
   if (!m) return 0;
   const sign = m[1] === "-" ? -1 : 1;
   const h = Number(m[2]);

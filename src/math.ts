@@ -26,7 +26,9 @@ export function lerpRgb(a: Rgb, b: Rgb, t: number): Rgb {
 
 export function rgbToHex(rgb: Rgb): string {
   const toHex = (v: number) =>
-    Math.round(clamp(v, 0, 255)).toString(16).padStart(2, "0");
+    Math.round(clamp(v, 0, 255))
+      .toString(16)
+      .padStart(2, "0");
   return `#${toHex(rgb[0])}${toHex(rgb[1])}${toHex(rgb[2])}`;
 }
 

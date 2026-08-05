@@ -1,5 +1,5 @@
 import { lerp, lerpRgb } from "./math.js";
-import type { InterpolatedLight, LightStop, Rgb } from "./types.js";
+import type { InterpolatedLight, LightStop } from "./types.js";
 
 /**
  * Time-of-day keyframes from the Luminat MainScreens prototype.
@@ -37,10 +37,10 @@ export function lightAt(h: number, stops: readonly LightStop[] = DAY_STOPS): Int
   }
   const first = stops[0]!;
   return {
-    rgb: first.rgb as Rgb,
+    rgb: first.rgb,
     a: first.a,
     blur: first.blur,
-    ring: first.ring as Rgb,
+    ring: first.ring,
     ringA: first.ringA,
   };
 }
