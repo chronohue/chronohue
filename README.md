@@ -84,14 +84,17 @@ sampleLightHue({
 
 Moon age stays absolute (UTC). Latitude is explicit — pair zone + city lat yourself.
 
-## Dev playground
+## Demo (GitHub Pages)
+
+Live: **https://isamarin.github.io/circahue/**
+
+Location / timezone / lat·lon, 24h dial, sun·moon chart, UI kit on CSS vars.
 
 ```bash
 npm install
-npm run dev        # → http://localhost:5173
+npm run dev              # → http://localhost:5173
+GITHUB_PAGES=1 npm run build:demo   # → ./site with base /circahue/
 ```
-
-Timezone picker, 24h dial, sun/moon chart, sunrise/sunset model readout.
 
 ## Scripts
 
@@ -103,6 +106,7 @@ npm run lint          # ESLint
 npm run format:check  # Prettier
 npm run publint       # package export quality
 npm run quality       # all of the above + tests + build
+npm run build:demo    # static playground → ./site
 ```
 
 ## Publish

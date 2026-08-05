@@ -20,23 +20,78 @@ interface Place {
   id: string;
   label: string;
   latitude: number;
+  longitude: number;
   timeZone: string;
 }
 
 const PLACES: Place[] = [
-  { id: "moscow", label: "Москва", latitude: 55.75, timeZone: "Europe/Moscow" },
-  { id: "yaroslavl", label: "Ярославль", latitude: 57.63, timeZone: "Europe/Moscow" },
-  { id: "spb", label: "Санкт-Петербург", latitude: 59.93, timeZone: "Europe/Moscow" },
-  { id: "murmansk", label: "Мурманск (полярка)", latitude: 68.97, timeZone: "Europe/Moscow" },
-  { id: "london", label: "London", latitude: 51.51, timeZone: "Europe/London" },
-  { id: "reykjavik", label: "Reykjavík", latitude: 64.15, timeZone: "Atlantic/Reykjavik" },
-  { id: "nyc", label: "New York", latitude: 40.71, timeZone: "America/New_York" },
-  { id: "la", label: "Los Angeles", latitude: 34.05, timeZone: "America/Los_Angeles" },
-  { id: "tokyo", label: "Tokyo", latitude: 35.68, timeZone: "Asia/Tokyo" },
-  { id: "singapore", label: "Singapore", latitude: 1.35, timeZone: "Asia/Singapore" },
-  { id: "sydney", label: "Sydney", latitude: -33.87, timeZone: "Australia/Sydney" },
-  { id: "cape", label: "Cape Town", latitude: -33.92, timeZone: "Africa/Johannesburg" },
-  { id: "custom", label: "Custom…", latitude: 55.75, timeZone: "UTC" },
+  { id: "moscow", label: "Москва", latitude: 55.75, longitude: 37.62, timeZone: "Europe/Moscow" },
+  {
+    id: "yaroslavl",
+    label: "Ярославль",
+    latitude: 57.63,
+    longitude: 39.87,
+    timeZone: "Europe/Moscow",
+  },
+  {
+    id: "spb",
+    label: "Санкт-Петербург",
+    latitude: 59.93,
+    longitude: 30.34,
+    timeZone: "Europe/Moscow",
+  },
+  {
+    id: "murmansk",
+    label: "Мурманск (полярка)",
+    latitude: 68.97,
+    longitude: 33.09,
+    timeZone: "Europe/Moscow",
+  },
+  { id: "london", label: "London", latitude: 51.51, longitude: -0.13, timeZone: "Europe/London" },
+  {
+    id: "reykjavik",
+    label: "Reykjavík",
+    latitude: 64.15,
+    longitude: -21.94,
+    timeZone: "Atlantic/Reykjavik",
+  },
+  {
+    id: "nyc",
+    label: "New York",
+    latitude: 40.71,
+    longitude: -74.01,
+    timeZone: "America/New_York",
+  },
+  {
+    id: "la",
+    label: "Los Angeles",
+    latitude: 34.05,
+    longitude: -118.24,
+    timeZone: "America/Los_Angeles",
+  },
+  { id: "tokyo", label: "Tokyo", latitude: 35.68, longitude: 139.69, timeZone: "Asia/Tokyo" },
+  {
+    id: "singapore",
+    label: "Singapore",
+    latitude: 1.35,
+    longitude: 103.82,
+    timeZone: "Asia/Singapore",
+  },
+  {
+    id: "sydney",
+    label: "Sydney",
+    latitude: -33.87,
+    longitude: 151.21,
+    timeZone: "Australia/Sydney",
+  },
+  {
+    id: "cape",
+    label: "Cape Town",
+    latitude: -33.92,
+    longitude: 18.42,
+    timeZone: "Africa/Johannesburg",
+  },
+  { id: "custom", label: "Custom…", latitude: 55.75, longitude: 37.62, timeZone: "UTC" },
 ];
 
 /** Common IANA zones for the timezone dropdown. */
@@ -83,6 +138,7 @@ const el = {
   place: $("place") as unknown as HTMLSelectElement,
   tz: $("tz") as unknown as HTMLSelectElement,
   lat: $("lat") as unknown as HTMLInputElement,
+  lon: $("lon") as unknown as HTMLInputElement,
   date: $("date") as unknown as HTMLInputElement,
   liveClock: $("liveClock") as unknown as HTMLInputElement,
   seasonSeg: $("seasonSeg"),
@@ -114,6 +170,14 @@ const el = {
   brandMark: $("brandMark"),
   facts: $("facts"),
   stopStrip: $("stopStrip"),
+  demoProgress: $("demoProgress"),
+  demoProgressLabel: $("demoProgressLabel"),
+  metaAccent: $("metaAccent"),
+  metaPhase: $("metaPhase"),
+  metaSun: $("metaSun"),
+  metaMoon: $("metaMoon"),
+  metaPlace: $("metaPlace"),
+  metaSeason: $("metaSeason"),
 };
 
 // ── State ───────────────────────────────────────────────────────────────────
@@ -131,7 +195,7 @@ function fillSelects() {
     o.textContent = p.label;
     el.place.appendChild(o);
   }
-  el.place.value = "moscow";
+  el.place.value = "yaroslavl";
 
   // Ensure place zones are in the list
   const zones = new Set(TIMEZONES);
@@ -149,8 +213,10 @@ function fillSelects() {
     o.textContent = z;
     el.tz.appendChild(o);
   }
-  el.tz.value = "Europe/Moscow";
-  el.lat.value = "55.75";
+  const home = PLACES.find((p) => p.id === "yaroslavl")!;
+  el.tz.value = home.timeZone;
+  el.lat.value = String(home.latitude);
+  el.lon.value = String(home.longitude);
 
   const today = new Date();
   el.date.value = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
@@ -333,9 +399,11 @@ function paint(snap: LightHueSnapshot, timeZone: string, live: boolean) {
 
   // reality facts
   const ev = solarDayEvents(snap.sun.declinationDeg, snap.meta.latitude);
+  const lon = Number(el.lon.value);
   const rows: [string, string][] = [
     ["Зона", `${timeZone} (${snap.meta.offsetLabel ?? "local"})`],
     ["Широта", `${snap.meta.latitude.toFixed(2)}°`],
+    ["Долгота", Number.isFinite(lon) ? `${lon.toFixed(2)}°` : "—"],
     ["День года", String(snap.meta.dayOfYear)],
     ["Сезон factor", snap.seasonFactor.toFixed(2)],
     ["Фаза", `${snap.phase} / ${snap.phaseLabel}`],
@@ -356,9 +424,19 @@ function paint(snap: LightHueSnapshot, timeZone: string, live: boolean) {
 
   el.facts.innerHTML = rows.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("");
 
-  // highlight stop under cursor hour
-  const atStop = lightAt(snap.hour);
-  void atStop;
+  // UI kit meta + progress demo
+  el.metaAccent.textContent = snap.accent.hex;
+  el.metaPhase.textContent = snap.phaseLabel;
+  el.metaSun.textContent = `${snap.sun.altitudeDeg.toFixed(1)}°`;
+  el.metaMoon.textContent = `${(snap.moon.phase * 100).toFixed(0)}% · ${snap.moon.ageDays.toFixed(1)}d`;
+  el.metaPlace.textContent = `${snap.meta.latitude.toFixed(1)}°, ${Number.isFinite(lon) ? lon.toFixed(1) : "—"}°`;
+  el.metaSeason.textContent = `${snap.meta.season} · ${snap.seasonFactor.toFixed(2)}`;
+
+  const pct = Math.min(100, Math.max(8, (snap.hour / 24) * 100));
+  el.demoProgress.style.width = `${pct.toFixed(1)}%`;
+  el.demoProgressLabel.textContent = `${formatHourClock(snap.hour)} · day ${pct.toFixed(0)}%`;
+
+  void lightAt(snap.hour);
 }
 
 // ── Events ──────────────────────────────────────────────────────────────────
@@ -369,6 +447,7 @@ function bind() {
     if (!p || p.id === "custom") return;
     el.tz.value = p.timeZone;
     el.lat.value = String(p.latitude);
+    el.lon.value = String(p.longitude);
     render();
   });
 
@@ -380,6 +459,10 @@ function bind() {
   });
 
   el.lat.addEventListener("change", () => {
+    el.place.value = "custom";
+    render();
+  });
+  el.lon.addEventListener("change", () => {
     el.place.value = "custom";
     render();
   });

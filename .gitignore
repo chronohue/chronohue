@@ -1,7 +1,9 @@
 node_modules/
 dist/
+site/
 dev-dist/
 *.log
 .DS_Store
 coverage/
 .vite/
+*.tgz

@@ -3,51 +3,84 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>circahue · circadian playground</title>
+    <meta
+      name="description"
+      content="circahue — circadian accent hues. Interactive demo: location, sun/moon chart, UI kit."
+    />
+    <title>@igrs/circahue · demo</title>
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
     <div id="app">
       <header class="top">
         <div class="brand">
-          <div class="mark" id="brandMark">L</div>
+          <div class="mark" id="brandMark">◎</div>
           <div>
             <h1>circahue</h1>
-            <p class="sub">circadian hue playground · sun / moon / timezone</p>
+            <p class="sub"><span class="mono">@igrs/circahue</span> · circadian hue lab</p>
           </div>
         </div>
         <div class="top-meta">
           <span id="phasePill" class="pill">—</span>
           <span id="clockReadout" class="mono">—</span>
+          <a
+            class="link-btn"
+            href="https://github.com/isamarin/circahue"
+            target="_blank"
+            rel="noreferrer"
+            >GitHub</a
+          >
+          <a
+            class="link-btn"
+            href="https://www.npmjs.com/package/@igrs/circahue"
+            target="_blank"
+            rel="noreferrer"
+            >npm</a
+          >
         </div>
       </header>
 
+      <!-- Location & time -->
       <section class="controls panel">
-        <div class="field">
-          <label for="place">Место</label>
-          <select id="place"></select>
-        </div>
-        <div class="field">
-          <label for="tz">Часовой пояс</label>
-          <select id="tz"></select>
-        </div>
-        <div class="field">
-          <label for="lat">Широта °</label>
-          <input id="lat" type="number" step="0.01" min="-90" max="90" />
-        </div>
-        <div class="field">
-          <label for="date">Дата</label>
-          <input id="date" type="date" />
-        </div>
-        <div class="field grow">
-          <label>Сезон (интенсивность glow)</label>
-          <div class="seg" id="seasonSeg"></div>
-        </div>
-        <div class="field">
-          <label class="check">
-            <input id="liveClock" type="checkbox" checked />
-            Живые часы (зона)
-          </label>
+        <div class="panel-title">Местоположение и время</div>
+        <div class="controls-grid">
+          <div class="field">
+            <label for="place">Место</label>
+            <select id="place"></select>
+          </div>
+          <div class="field">
+            <label for="tz">Часовой пояс</label>
+            <select id="tz"></select>
+          </div>
+          <div class="field">
+            <label for="lat">Широта °</label>
+            <input id="lat" type="number" step="0.01" min="-90" max="90" />
+          </div>
+          <div class="field">
+            <label for="lon">Долгота °</label>
+            <input
+              id="lon"
+              type="number"
+              step="0.01"
+              min="-180"
+              max="180"
+              title="Пока для подписи; solar noon ≈ 12:00 wall"
+            />
+          </div>
+          <div class="field">
+            <label for="date">Дата</label>
+            <input id="date" type="date" />
+          </div>
+          <div class="field grow">
+            <label>Сезон (glow)</label>
+            <div class="seg" id="seasonSeg"></div>
+          </div>
+          <div class="field">
+            <label class="check">
+              <input id="liveClock" type="checkbox" checked />
+              Живые часы (зона)
+            </label>
+          </div>
         </div>
       </section>
 
@@ -61,7 +94,7 @@
           </div>
           <div id="dialHour" class="dial-hour mono">12:00</div>
           <input id="hourRange" type="range" min="0" max="23.99" step="0.01" value="12" />
-          <button id="nowBtn" type="button" class="ghost">Сейчас в выбранной зоне</button>
+          <button id="nowBtn" type="button" class="btn ghost">Сейчас в зоне</button>
         </aside>
 
         <section class="chart-col panel">
@@ -104,10 +137,10 @@
         </section>
 
         <aside class="reality panel">
-          <div class="panel-title">Проверка «на реальность»</div>
+          <div class="panel-title">Параметры модели</div>
           <p class="hint">
-            Модель: local solar hour ≈ wall clock в зоне, altitude @ latitude. Не полный эфемерис
-            (нет уравнения времени) — сравнивай форму дня и порядок восхода/заката.
+            Accent следует wall clock + season + latitude. Долгота — справочно (solar noon ≈ 12:00
+            local).
           </p>
           <dl class="facts mono" id="facts"></dl>
           <div class="compare">
@@ -117,9 +150,100 @@
         </aside>
       </main>
 
+      <!-- UI kit living on circahue vars -->
+      <section class="uikit panel">
+        <div class="uikit-head">
+          <div class="panel-title">UI kit · живёт от CSS vars</div>
+          <p class="hint tight">
+            Кнопки, границы, поля — на
+            <code>--accent-primary</code> / glow / ring. Крути час или место.
+          </p>
+        </div>
+
+        <div class="uikit-grid">
+          <div class="uikit-block">
+            <div class="panel-title sm">Кнопки</div>
+            <div class="row wrap">
+              <button type="button" class="btn primary">Primary</button>
+              <button type="button" class="btn secondary">Secondary</button>
+              <button type="button" class="btn ghost">Ghost</button>
+              <button type="button" class="btn primary" disabled>Disabled</button>
+              <button type="button" class="btn pill">Pill</button>
+            </div>
+          </div>
+
+          <div class="uikit-block">
+            <div class="panel-title sm">Границы и карточки</div>
+            <div class="border-demo">
+              <div class="card border-default">default border</div>
+              <div class="card border-accent">accent ring</div>
+              <div class="card border-glow">glow frame</div>
+            </div>
+          </div>
+
+          <div class="uikit-block">
+            <div class="panel-title sm">Поля</div>
+            <div class="row wrap">
+              <input class="field-demo" type="text" placeholder="Text input" value="IMG_0231.lri" />
+              <select class="field-demo">
+                <option>Export DNGs…</option>
+                <option>Fuse preview</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="uikit-block">
+            <div class="panel-title sm">Badges · chips · progress</div>
+            <div class="row wrap">
+              <span class="badge">FILE</span>
+              <span class="badge ok">ok</span>
+              <span class="chip">packed</span>
+              <span class="chip">bayer</span>
+              <span class="chip active">B3 ref</span>
+            </div>
+            <div class="progress-track">
+              <div class="progress-bar" id="demoProgress" style="width: 56%"></div>
+            </div>
+            <div class="mono tiny" id="demoProgressLabel">9/16 · B4</div>
+          </div>
+
+          <div class="uikit-block span2">
+            <div class="panel-title sm">Meta cards</div>
+            <div class="meta-grid" id="metaDemo">
+              <div class="meta-card">
+                <div class="label">Accent</div>
+                <div class="value" id="metaAccent">—</div>
+              </div>
+              <div class="meta-card">
+                <div class="label">Phase</div>
+                <div class="value" id="metaPhase">—</div>
+              </div>
+              <div class="meta-card">
+                <div class="label">Sun alt</div>
+                <div class="value" id="metaSun">—</div>
+              </div>
+              <div class="meta-card">
+                <div class="label">Moon</div>
+                <div class="value" id="metaMoon">—</div>
+              </div>
+              <div class="meta-card">
+                <div class="label">Place</div>
+                <div class="value" id="metaPlace">—</div>
+              </div>
+              <div class="meta-card">
+                <div class="label">Season</div>
+                <div class="value" id="metaSeason">—</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <footer class="foot mono">
-        circahue dev · isamarin × BLMK ·
-        <kbd>npm run dev</kbd>
+        <a href="https://github.com/isamarin/circahue">isamarin/circahue</a>
+        ·
+        <a href="https://www.npmjs.com/package/@igrs/circahue">@igrs/circahue</a>
+        · isamarin × BLMK
       </footer>
     </div>
     <script type="module" src="./main.ts"></script>
