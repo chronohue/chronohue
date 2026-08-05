@@ -25,24 +25,24 @@ interface Place {
 }
 
 const PLACES: Place[] = [
-  { id: "moscow", label: "Москва", latitude: 55.75, longitude: 37.62, timeZone: "Europe/Moscow" },
+  { id: "moscow", label: "Moscow", latitude: 55.75, longitude: 37.62, timeZone: "Europe/Moscow" },
   {
     id: "yaroslavl",
-    label: "Ярославль",
+    label: "Yaroslavl",
     latitude: 57.63,
     longitude: 39.87,
     timeZone: "Europe/Moscow",
   },
   {
     id: "spb",
-    label: "Санкт-Петербург",
+    label: "Saint Petersburg",
     latitude: 59.93,
     longitude: 30.34,
     timeZone: "Europe/Moscow",
   },
   {
     id: "murmansk",
-    label: "Мурманск (полярка)",
+    label: "Murmansk (polar)",
     latitude: 68.97,
     longitude: 33.09,
     timeZone: "Europe/Moscow",
@@ -124,10 +124,10 @@ const TIMEZONES = [
 ];
 
 const SEASONS: { id: SeasonMode; label: string }[] = [
-  { id: "auto", label: "Авто" },
-  { id: "winter", label: "Зима" },
-  { id: "mid", label: "Демисезон" },
-  { id: "summer", label: "Лето" },
+  { id: "auto", label: "Auto" },
+  { id: "winter", label: "Winter" },
+  { id: "mid", label: "Mid" },
+  { id: "summer", label: "Summer" },
 ];
 
 // ── DOM ─────────────────────────────────────────────────────────────────────
@@ -338,7 +338,7 @@ function render() {
     season,
     hourOverride: live ? undefined : hour,
     includeArcs: true,
-    locale: "ru-RU",
+    locale: "en",
   });
 
   applyCssVars(document.documentElement, snap.cssVars);
@@ -352,7 +352,7 @@ function paint(snap: LightHueSnapshot, timeZone: string, live: boolean) {
   // header
   el.phasePill.textContent = `${snap.phaseLabel} · ${formatHourClock(snap.hour)}`;
   el.clockReadout.textContent = live
-    ? formatZonedDateTime(new Date(), timeZone, "ru-RU")
+    ? formatZonedDateTime(new Date(), timeZone, "en")
     : `${el.date.value} ${formatHourClock(snap.hour)} · ${timeZone}`;
 
   // dial
@@ -364,7 +364,7 @@ function paint(snap: LightHueSnapshot, timeZone: string, live: boolean) {
   });
 
   // chart
-  el.chartTitle.textContent = `${snap.phaseLabel} — ход солнца и луны за сутки`;
+  el.chartTitle.textContent = `${snap.phaseLabel} — sun & moon path for the day`;
   const vb = arcs.viewBox;
   el.sunSvg.setAttribute("viewBox", vb);
   el.moonSvg.setAttribute("viewBox", vb);
@@ -400,24 +400,25 @@ function paint(snap: LightHueSnapshot, timeZone: string, live: boolean) {
   // reality facts
   const ev = solarDayEvents(snap.sun.declinationDeg, snap.meta.latitude);
   const lon = Number(el.lon.value);
+  const yn = (v: boolean) => (v ? "yes" : "no");
   const rows: [string, string][] = [
-    ["Зона", `${timeZone} (${snap.meta.offsetLabel ?? "local"})`],
-    ["Широта", `${snap.meta.latitude.toFixed(2)}°`],
-    ["Долгота", Number.isFinite(lon) ? `${lon.toFixed(2)}°` : "—"],
-    ["День года", String(snap.meta.dayOfYear)],
-    ["Сезон factor", snap.seasonFactor.toFixed(2)],
-    ["Фаза", `${snap.phase} / ${snap.phaseLabel}`],
-    ["Солнце alt", `${snap.sun.altitudeDeg.toFixed(1)}° ${snap.sun.aboveHorizon ? "↑" : "↓"}`],
-    ["Луна alt*", `${snap.moon.altitudeDeg.toFixed(1)}° ${snap.moon.aboveHorizon ? "↑" : "↓"}`],
-    ["Скл. Солнца", `${snap.sun.declinationDeg.toFixed(2)}°`],
-    ["Восход (модель)", formatHourClock(ev.sunriseHour)],
-    ["Закат (модель)", formatHourClock(ev.sunsetHour)],
-    ["Макс alt @", `${formatHourClock(ev.noonHour)} → ${ev.maxAltitudeDeg.toFixed(1)}°`],
-    ["Мин alt", `${ev.minAltitudeDeg.toFixed(1)}°`],
-    ["Полярный день", ev.alwaysAbove ? "да" : "нет"],
-    ["Полярная ночь", ev.alwaysBelow ? "да" : "нет"],
-    ["Возраст Луны", `${snap.moon.ageDays.toFixed(2)} d`],
-    ["Освещ. Луны", `${(snap.moon.phase * 100).toFixed(0)}%`],
+    ["Zone", `${timeZone} (${snap.meta.offsetLabel ?? "local"})`],
+    ["Latitude", `${snap.meta.latitude.toFixed(2)}°`],
+    ["Longitude", Number.isFinite(lon) ? `${lon.toFixed(2)}°` : "—"],
+    ["Day of year", String(snap.meta.dayOfYear)],
+    ["Season factor", snap.seasonFactor.toFixed(2)],
+    ["Phase", `${snap.phase} / ${snap.phaseLabel}`],
+    ["Sun alt", `${snap.sun.altitudeDeg.toFixed(1)}° ${snap.sun.aboveHorizon ? "↑" : "↓"}`],
+    ["Moon alt*", `${snap.moon.altitudeDeg.toFixed(1)}° ${snap.moon.aboveHorizon ? "↑" : "↓"}`],
+    ["Sun decl.", `${snap.sun.declinationDeg.toFixed(2)}°`],
+    ["Sunrise (model)", formatHourClock(ev.sunriseHour)],
+    ["Sunset (model)", formatHourClock(ev.sunsetHour)],
+    ["Max alt @", `${formatHourClock(ev.noonHour)} → ${ev.maxAltitudeDeg.toFixed(1)}°`],
+    ["Min alt", `${ev.minAltitudeDeg.toFixed(1)}°`],
+    ["Polar day", yn(ev.alwaysAbove)],
+    ["Polar night", yn(ev.alwaysBelow)],
+    ["Moon age", `${snap.moon.ageDays.toFixed(2)} d`],
+    ["Moon lit", `${(snap.moon.phase * 100).toFixed(0)}%`],
     ["Accent", snap.accent.hex],
     ["Glow α / blur", `${snap.glow.alpha.toFixed(2)} / ${snap.glow.blur.toFixed(1)}px`],
   ];
