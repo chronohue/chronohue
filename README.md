@@ -5,7 +5,7 @@
 Pure TypeScript — **no DOM, no React, zero runtime deps**.  
 Born as the Luminat “living light” accent (code name *light-hue*); public name **circahue**.
 
-[![CI](https://github.com/isamarin/circahue-/actions/workflows/ci.yml/badge.svg)](https://github.com/isamarin/circahue-/actions/workflows/ci.yml)
+[![CI](https://github.com/isamarin/circahue/actions/workflows/ci.yml/badge.svg)](https://github.com/isamarin/circahue/actions/workflows/ci.yml)
 [![npm](https://img.shields.io/npm/v/circahue.svg)](https://www.npmjs.com/package/circahue)
 
 ## Install

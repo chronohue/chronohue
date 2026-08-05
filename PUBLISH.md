@@ -1,7 +1,7 @@
 # How to publish **circahue**
 
 Package name on npm: **`circahue`**  
-Repo: https://github.com/isamarin/circahue-
+Repo: https://github.com/isamarin/circahue
 
 ---
 
@@ -12,15 +12,15 @@ Repo: https://github.com/isamarin/circahue-
 ```bash
 cd /path/to/circahue   # this project (folder may still be light-hue locally)
 git remote -v
-# should be: https://github.com/isamarin/circahue-.git
+# should be: https://github.com/isamarin/circahue.git
 ```
 
 If the remote is empty or wrong:
 
 ```bash
-git remote add origin https://github.com/isamarin/circahue-.git
+git remote add origin https://github.com/isamarin/circahue.git
 # or
-git remote set-url origin https://github.com/isamarin/circahue-.git
+git remote set-url origin https://github.com/isamarin/circahue.git
 ```
 
 Push `main` (first time):

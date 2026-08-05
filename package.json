@@ -28,12 +28,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/isamarin/circahue-.git"
+    "url": "git+https://github.com/isamarin/circahue.git"
   },
   "bugs": {
-    "url": "https://github.com/isamarin/circahue-/issues"
+    "url": "https://github.com/isamarin/circahue/issues"
   },
-  "homepage": "https://github.com/isamarin/circahue-#readme",
+  "homepage": "https://github.com/isamarin/circahue#readme",
   "keywords": [
     "circadian",
     "hue",
