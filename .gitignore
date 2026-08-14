@@ -1,6 +1,7 @@
 node_modules/
 dist/
 site/
+circahue-widget/
 dev-dist/
 *.log
 .DS_Store
