@@ -4,7 +4,8 @@
 | ---------------- | -------------------------------------- |
 | **npm package**  | `@igrs/circahue`                       |
 | **Organization** | [igrs](https://www.npmjs.com/org/igrs) |
-| **GitHub**       | https://github.com/isamarin/circahue   |
+| **GitHub**       | https://github.com/circahue/circahue   |
+| **Demo**         | https://circahue.isamarin.xyz/         |
 
 ---
 
@@ -15,7 +16,7 @@
 ```bash
 cd /path/to/circahue   # local folder may still be light-hue
 git remote -v
-# → https://github.com/isamarin/circahue.git
+# → https://github.com/circahue/circahue.git
 git push -u origin main
 ```
 

@@ -12,6 +12,7 @@ import {
   solarAltitude,
   solarDeclination,
   moonAgeDays,
+  buildArcs,
   DEFAULT_LATITUDE,
 } from "../src/index.js";
 
@@ -103,6 +104,20 @@ describe("solar geometry", () => {
     const decl = solarDeclination(NOON_JULY);
     const alt = solarAltitude(0, decl, 55.75);
     expect(alt).toBeLessThan(0);
+  });
+});
+
+describe("buildArcs", () => {
+  it("puts the sun marker on the noon sample of the sun path", () => {
+    const a = buildArcs({
+      hour: 12,
+      seasonFactor: 1,
+      sunDeclinationDeg: 20,
+      moonAgeDays: 0,
+      latitude: 57.63,
+    });
+    expect(a.sun.x).toBeCloseTo(150);
+    expect(a.sunPath).toContain(`${a.sun.x.toFixed(1)},${a.sun.y.toFixed(1)}`);
   });
 });
 

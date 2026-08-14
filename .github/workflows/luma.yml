@@ -1,0 +1,42 @@
+name: Deploy demo (Luma)
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - "dev/**"
+      - "src/**"
+      - "deploy/**"
+      - "vite.config.ts"
+      - "package.json"
+      - "package-lock.json"
+      - ".github/workflows/luma.yml"
+  workflow_dispatch:
+
+jobs:
+  publish:
+    name: Publish to Luma
+    runs-on: ubuntu-latest
+    environment: luma
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install deploy key
+        env:
+          LUMA_SSH_KEY: ${{ secrets.LUMA_SSH_KEY }}
+        run: |
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$LUMA_SSH_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          cp deploy/known_hosts ~/.ssh/known_hosts
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Build demo
+        run: |
+          npm ci
+          npm run build:demo
+      - name: Rsync to Luma
+        env:
+          SKIP_BUILD: "1"
+        run: bash deploy/deploy.sh

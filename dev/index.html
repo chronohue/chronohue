@@ -25,7 +25,7 @@
           <span id="clockReadout" class="mono">—</span>
           <a
             class="link-btn"
-            href="https://github.com/isamarin/circahue"
+            href="https://github.com/circahue/circahue"
             target="_blank"
             rel="noreferrer"
             >GitHub</a
@@ -116,18 +116,30 @@
           </div>
 
           <div id="arcStack" class="arc-stack">
-            <svg id="sunSvg" viewBox="0 0 300 286" preserveAspectRatio="none">
-              <line id="horizon1" x1="0" x2="300" y1="97" y2="97" />
-              <path id="sunPath" d="" />
+            <!-- Bodies live in the same viewBox as the arcs so they stay on the path
+                 when the stack is stretched (preserveAspectRatio=none). -->
+            <svg id="skyChart" viewBox="0 0 300 286" preserveAspectRatio="none" aria-hidden="true">
+              <rect id="skyGround" class="sky-ground" x="0" y="97" width="300" height="189" />
+              <line id="horizon" class="sky-horizon" x1="0" x2="300" y1="97" y2="97" />
+              <path id="sunPath" class="sky-path sun" d="" />
+              <path id="moonPath" class="sky-path moon" d="" />
+              <circle id="sunHalo" class="sun-halo" cx="150" cy="97" r="0" />
+              <circle id="sunDisc" class="sun-disc" cx="150" cy="97" r="0" />
+              <defs>
+                <clipPath id="moonClip">
+                  <rect id="moonClipRect" x="0" y="0" width="0" height="20" />
+                </clipPath>
+              </defs>
+              <circle id="moonOutline" class="moon-outline" cx="150" cy="97" r="10" />
+              <circle
+                id="moonLit"
+                class="moon-lit"
+                cx="150"
+                cy="97"
+                r="10"
+                clip-path="url(#moonClip)"
+              />
             </svg>
-            <svg id="moonSvg" viewBox="0 0 300 286" preserveAspectRatio="none">
-              <line id="horizon2" x1="0" x2="300" y1="97" y2="97" />
-              <path id="moonPath" d="" />
-            </svg>
-            <div id="sunMarker" class="body sun-body"></div>
-            <div id="moonMarker" class="body moon-body">
-              <div id="moonFill" class="moon-fill"></div>
-            </div>
             <div id="nowLine" class="now-line"></div>
           </div>
           <div class="axis mono">
@@ -240,7 +252,7 @@
       </section>
 
       <footer class="foot mono">
-        <a href="https://github.com/isamarin/circahue">isamarin/circahue</a>
+        <a href="https://github.com/circahue/circahue">circahue/circahue</a>
         ·
         <a href="https://www.npmjs.com/package/@igrs/circahue">@igrs/circahue</a>
         · isamarin × BLMK

@@ -1,8 +1,11 @@
-name: Pages
+name: Redirect GitHub Pages to circahue.isamarin.xyz
 
 on:
   push:
     branches: [main, master]
+    paths:
+      - "deploy/pages-redirect/**"
+      - ".github/workflows/pages.yml"
   workflow_dispatch:
 
 permissions:
@@ -15,37 +18,22 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build:
-    name: Build demo site
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: npm
-
-      - name: Install
-        run: npm ci
-
-      - name: Build GitHub Pages site
-        env:
-          GITHUB_PAGES: "1"
-        run: npm run build:demo
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: site
-
   deploy:
-    name: Deploy
-    needs: build
+    name: Publish redirect
     runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: deploy/pages-redirect
+
       - id: deployment
         uses: actions/deploy-pages@v4

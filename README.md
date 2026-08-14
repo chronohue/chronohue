@@ -5,7 +5,7 @@
 Pure TypeScript — **no DOM, no React, zero runtime deps**.  
 Born as the Luminat “living light” accent (code name _light-hue_); npm package **`@igrs/circahue`**.
 
-[![CI](https://github.com/isamarin/circahue/actions/workflows/ci.yml/badge.svg)](https://github.com/isamarin/circahue/actions/workflows/ci.yml)
+[![CI](https://github.com/circahue/circahue/actions/workflows/ci.yml/badge.svg)](https://github.com/circahue/circahue/actions/workflows/ci.yml)
 [![npm](https://img.shields.io/npm/v/@igrs/circahue.svg)](https://www.npmjs.com/package/@igrs/circahue)
 
 ## Install
@@ -13,6 +13,18 @@ Born as the Luminat “living light” accent (code name _light-hue_); npm packa
 ```bash
 npm install @igrs/circahue
 ```
+
+## Adapters
+
+Core stays framework-free. For a 30-second drop-in:
+
+| Host             | Package                                                                      | Fast path                         |
+| ---------------- | ---------------------------------------------------------------------------- | --------------------------------- |
+| Tailwind v3 / v4 | [`@igrs/circahue-tailwind`](https://github.com/isamarin/circahue-tailwind)   | `start()` + `bg-accent`           |
+| Svelte 5         | [`@igrs/circahue-svelte`](https://github.com/isamarin/circahue-svelte)       | `start()` / `$hue` / `<CircaHue>` |
+| Bootstrap 5      | [`@igrs/circahue-bootstrap`](https://github.com/isamarin/circahue-bootstrap) | `start()` + `.btn-primary`        |
+
+Local siblings next to this repo: `../tailwind-adapter`, `../svelte5-adapter`, `../bootstrap-adapter`.
 
 ## Quick start
 
@@ -84,16 +96,17 @@ sampleLightHue({
 
 Moon age stays absolute (UTC). Latitude is explicit — pair zone + city lat yourself.
 
-## Demo (GitHub Pages)
+## Demo
 
-Live: **https://isamarin.github.io/circahue/**
+Live: **https://circahue.isamarin.xyz/**
 
 Location / timezone / lat·lon, 24h dial, sun·moon chart, UI kit on CSS vars.
 
 ```bash
 npm install
 npm run dev              # → http://localhost:5173
-GITHUB_PAGES=1 npm run build:demo   # → ./site with base /circahue/
+npm run build:demo       # → ./site
+bash deploy/deploy.sh    # rsync to Luma
 ```
 
 ## Scripts

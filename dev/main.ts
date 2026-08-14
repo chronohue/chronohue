@@ -150,15 +150,16 @@ const el = {
   hourRange: $("hourRange") as unknown as HTMLInputElement,
   nowBtn: $("nowBtn") as unknown as HTMLButtonElement,
   chartTitle: $("chartTitle"),
-  sunSvg: $("sunSvg") as unknown as SVGSVGElement,
-  moonSvg: $("moonSvg") as unknown as SVGSVGElement,
+  skyChart: $("skyChart") as unknown as SVGSVGElement,
+  skyGround: $("skyGround") as unknown as SVGRectElement,
+  horizon: $("horizon") as unknown as SVGLineElement,
   sunPath: $("sunPath") as unknown as SVGPathElement,
   moonPath: $("moonPath") as unknown as SVGPathElement,
-  horizon1: $("horizon1") as unknown as SVGLineElement,
-  horizon2: $("horizon2") as unknown as SVGLineElement,
-  sunMarker: $("sunMarker"),
-  moonMarker: $("moonMarker"),
-  moonFill: $("moonFill"),
+  sunHalo: $("sunHalo") as unknown as SVGCircleElement,
+  sunDisc: $("sunDisc") as unknown as SVGCircleElement,
+  moonOutline: $("moonOutline") as unknown as SVGCircleElement,
+  moonLit: $("moonLit") as unknown as SVGCircleElement,
+  moonClipRect: $("moonClipRect") as unknown as SVGRectElement,
   nowLine: $("nowLine"),
   arcStack: $("arcStack"),
   caption: $("caption"),
@@ -363,31 +364,41 @@ function paint(snap: LightHueSnapshot, timeZone: string, live: boolean) {
     t.classList.toggle("active", h === snap.hourInt);
   });
 
-  // chart
+  // chart — sun/moon discs share the SVG viewBox with the arcs
   el.chartTitle.textContent = `${snap.phaseLabel} — sun & moon path for the day`;
-  const vb = arcs.viewBox;
-  el.sunSvg.setAttribute("viewBox", vb);
-  el.moonSvg.setAttribute("viewBox", vb);
+  el.skyChart.setAttribute("viewBox", arcs.viewBox);
+  el.skyGround.setAttribute("y", String(arcs.horizonY));
+  el.skyGround.setAttribute("height", String(Math.max(0, arcs.height - arcs.horizonY)));
+  el.horizon.setAttribute("y1", String(arcs.horizonY));
+  el.horizon.setAttribute("y2", String(arcs.horizonY));
   el.sunPath.setAttribute("d", arcs.sunPath);
   el.moonPath.setAttribute("d", arcs.moonPath);
-  el.horizon1.setAttribute("y1", String(arcs.horizonY));
-  el.horizon1.setAttribute("y2", String(arcs.horizonY));
-  el.horizon2.setAttribute("y1", String(arcs.horizonY));
-  el.horizon2.setAttribute("y2", String(arcs.horizonY));
 
-  const sunLeft = `${(arcs.sun.x / arcs.width) * 100}%`;
-  const moonLeft = `${(arcs.moon.x / arcs.width) * 100}%`;
-  el.sunMarker.style.left = sunLeft;
-  el.sunMarker.style.top = `${arcs.sun.y}px`;
-  el.sunMarker.style.width = `${arcs.sun.diameter}px`;
-  el.sunMarker.style.height = `${arcs.sun.diameter}px`;
-  el.sunMarker.style.opacity = arcs.sun.y < arcs.horizonY ? "1" : "0.35";
-  el.sunMarker.style.filter = `drop-shadow(0 0 ${7 + snap.glow.alpha * 16}px rgba(${rgb},0.9))`;
+  const sunR = arcs.sun.diameter / 2;
+  const sunAbove = arcs.sun.y < arcs.horizonY;
+  el.sunHalo.setAttribute("cx", String(arcs.sun.x));
+  el.sunHalo.setAttribute("cy", String(arcs.sun.y));
+  el.sunHalo.setAttribute("r", String(sunR + 4));
+  el.sunHalo.setAttribute("opacity", sunAbove ? "0.22" : "0.08");
+  el.sunDisc.setAttribute("cx", String(arcs.sun.x));
+  el.sunDisc.setAttribute("cy", String(arcs.sun.y));
+  el.sunDisc.setAttribute("r", String(sunR));
+  el.sunDisc.setAttribute("opacity", sunAbove ? "1" : "0.35");
+  el.sunDisc.style.filter = `drop-shadow(0 0 ${7 + snap.glow.alpha * 16}px rgba(${rgb},0.9))`;
 
-  el.moonMarker.style.left = moonLeft;
-  el.moonMarker.style.top = `${arcs.moon.y}px`;
-  el.moonMarker.style.opacity = arcs.moon.y < arcs.horizonY ? "1" : "0.35";
-  el.moonFill.style.width = `${arcs.moon.fillWidth}px`;
+  const moonR = arcs.moon.diameter / 2;
+  const moonAbove = arcs.moon.y < arcs.horizonY;
+  const moonOp = moonAbove ? "1" : "0.35";
+  for (const node of [el.moonOutline, el.moonLit]) {
+    node.setAttribute("cx", String(arcs.moon.x));
+    node.setAttribute("cy", String(arcs.moon.y));
+    node.setAttribute("r", String(moonR));
+    node.setAttribute("opacity", moonOp);
+  }
+  el.moonClipRect.setAttribute("x", String(arcs.moon.x - moonR));
+  el.moonClipRect.setAttribute("y", String(arcs.moon.y - moonR));
+  el.moonClipRect.setAttribute("width", String(Math.max(0, arcs.moon.fillWidth)));
+  el.moonClipRect.setAttribute("height", String(arcs.moon.diameter));
 
   el.nowLine.style.left = `${(snap.hour / 24) * 100}%`;
   el.caption.textContent = snap.caption;
