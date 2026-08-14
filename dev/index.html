@@ -125,33 +125,7 @@
             </div>
           </div>
 
-          <div id="arcStack" class="arc-stack">
-            <!-- Bodies live in the same viewBox as the arcs so they stay on the path
-                 when the stack is stretched (preserveAspectRatio=none). -->
-            <svg id="skyChart" viewBox="0 0 300 286" preserveAspectRatio="none" aria-hidden="true">
-              <rect id="skyGround" class="sky-ground" x="0" y="97" width="300" height="189" />
-              <line id="horizon" class="sky-horizon" x1="0" x2="300" y1="97" y2="97" />
-              <path id="sunPath" class="sky-path sun" d="" />
-              <path id="moonPath" class="sky-path moon" d="" />
-              <circle id="sunHalo" class="sun-halo" cx="150" cy="97" r="0" />
-              <circle id="sunDisc" class="sun-disc" cx="150" cy="97" r="0" />
-              <defs>
-                <clipPath id="moonClip">
-                  <rect id="moonClipRect" x="0" y="0" width="0" height="20" />
-                </clipPath>
-              </defs>
-              <circle id="moonOutline" class="moon-outline" cx="150" cy="97" r="10" />
-              <circle
-                id="moonLit"
-                class="moon-lit"
-                cx="150"
-                cy="97"
-                r="10"
-                clip-path="url(#moonClip)"
-              />
-            </svg>
-            <div id="nowLine" class="now-line"></div>
-          </div>
+          <div id="skyHost" class="arc-stack"></div>
           <div class="axis mono">
             <span>00</span><span>06</span><span>12</span><span>18</span><span>24</span>
           </div>

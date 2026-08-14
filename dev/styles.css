@@ -393,7 +393,6 @@ input:focus {
 .arc-stack {
   position: relative;
   width: 100%;
-  height: 286px;
   border-radius: 10px;
   background: var(--surface-cell);
   border: 1px solid var(--border);
@@ -401,76 +400,8 @@ input:focus {
   cursor: crosshair;
 }
 
-.arc-stack svg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
-.sky-ground {
-  fill: #e8eaed;
-  opacity: 0.14;
-}
-
-.sky-horizon {
-  stroke: var(--border);
-  stroke-width: 1.5;
-  stroke-dasharray: 3 6;
-}
-
-.sky-path {
-  fill: none;
-}
-
-.sky-path.sun {
-  stroke: rgba(232, 164, 58, 0.55);
-  stroke-width: 2.5;
-}
-
-.sky-path.moon {
-  stroke: rgba(160, 180, 255, 0.55);
-  stroke-width: 1.75;
-  stroke-dasharray: 3 4;
-}
-
-.sun-halo {
-  fill: rgb(var(--light-hue-glow-rgb));
-  pointer-events: none;
-}
-
-.sun-disc {
-  fill: rgb(var(--light-hue-glow-rgb));
-  pointer-events: none;
-}
-
-.moon-outline {
-  fill: #0c0d0f;
-  stroke: rgba(var(--light-hue-glow-rgb), 0.6);
-  stroke-width: 1.2;
-  pointer-events: none;
-}
-
-.moon-lit {
-  fill: rgb(var(--light-hue-glow-rgb));
-  pointer-events: none;
-}
-
-.now-line {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 1px;
-  background: linear-gradient(
-    180deg,
-    transparent,
-    rgba(var(--light-hue-glow-rgb), 0.55),
-    transparent
-  );
-  pointer-events: none;
-  transform: translateX(-50%);
-  transition: left 0.35s var(--ease);
+.arc-stack .ch-sky-chart {
+  border-radius: 9px;
 }
 
 .axis {

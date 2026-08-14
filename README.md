@@ -100,6 +100,8 @@ Moon age stays absolute (UTC). Latitude is explicit — pair zone + city lat you
 
 Live: **https://circahue.isamarin.xyz/**
 
+The sun/moon chart is [`@circahue/widget`](https://github.com/circahue/widget) — same drawing as Lumina.
+
 Location / timezone / lat·lon, 24h dial, sun·moon chart, UI kit on CSS vars.
 
 ```bash

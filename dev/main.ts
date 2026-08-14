@@ -13,6 +13,8 @@ import {
   type LightHueSnapshot,
   type SeasonMode,
 } from "../src/index.ts";
+import { ARC_HEIGHT, mountSky, type SkyHandle } from "@circahue/widget";
+import "@circahue/widget/sky.css";
 
 // ── Place presets (lat + IANA zone) ─────────────────────────────────────────
 
@@ -150,18 +152,7 @@ const el = {
   hourRange: $("hourRange") as unknown as HTMLInputElement,
   nowBtn: $("nowBtn") as unknown as HTMLButtonElement,
   chartTitle: $("chartTitle"),
-  skyChart: $("skyChart") as unknown as SVGSVGElement,
-  skyGround: $("skyGround") as unknown as SVGRectElement,
-  horizon: $("horizon") as unknown as SVGLineElement,
-  sunPath: $("sunPath") as unknown as SVGPathElement,
-  moonPath: $("moonPath") as unknown as SVGPathElement,
-  sunHalo: $("sunHalo") as unknown as SVGCircleElement,
-  sunDisc: $("sunDisc") as unknown as SVGCircleElement,
-  moonOutline: $("moonOutline") as unknown as SVGCircleElement,
-  moonLit: $("moonLit") as unknown as SVGCircleElement,
-  moonClipRect: $("moonClipRect") as unknown as SVGRectElement,
-  nowLine: $("nowLine"),
-  arcStack: $("arcStack"),
+  skyHost: $("skyHost"),
   caption: $("caption"),
   swatch: $("swatch"),
   accentHex: $("accentHex"),
@@ -180,6 +171,11 @@ const el = {
   metaPlace: $("metaPlace"),
   metaSeason: $("metaSeason"),
 };
+
+const sky: SkyHandle = mountSky(el.skyHost, {
+  note: false,
+  onHour: (h) => setHour(h),
+});
 
 // ── State ───────────────────────────────────────────────────────────────────
 
@@ -339,6 +335,7 @@ function render() {
     season,
     hourOverride: live ? undefined : hour,
     includeArcs: true,
+    arcHeight: ARC_HEIGHT,
     locale: "en",
   });
 
@@ -347,9 +344,6 @@ function render() {
 }
 
 function paint(snap: LightHueSnapshot, timeZone: string, live: boolean) {
-  const arcs = snap.arcs!;
-  const rgb = snap.glow.rgb;
-
   // header
   el.phasePill.textContent = `${snap.phaseLabel} · ${formatHourClock(snap.hour)}`;
   el.clockReadout.textContent = live
@@ -364,43 +358,8 @@ function paint(snap: LightHueSnapshot, timeZone: string, live: boolean) {
     t.classList.toggle("active", h === snap.hourInt);
   });
 
-  // chart — sun/moon discs share the SVG viewBox with the arcs
   el.chartTitle.textContent = `${snap.phaseLabel} — sun & moon path for the day`;
-  el.skyChart.setAttribute("viewBox", arcs.viewBox);
-  el.skyGround.setAttribute("y", String(arcs.horizonY));
-  el.skyGround.setAttribute("height", String(Math.max(0, arcs.height - arcs.horizonY)));
-  el.horizon.setAttribute("y1", String(arcs.horizonY));
-  el.horizon.setAttribute("y2", String(arcs.horizonY));
-  el.sunPath.setAttribute("d", arcs.sunPath);
-  el.moonPath.setAttribute("d", arcs.moonPath);
-
-  const sunR = arcs.sun.diameter / 2;
-  const sunAbove = arcs.sun.y < arcs.horizonY;
-  el.sunHalo.setAttribute("cx", String(arcs.sun.x));
-  el.sunHalo.setAttribute("cy", String(arcs.sun.y));
-  el.sunHalo.setAttribute("r", String(sunR + 4));
-  el.sunHalo.setAttribute("opacity", sunAbove ? "0.22" : "0.08");
-  el.sunDisc.setAttribute("cx", String(arcs.sun.x));
-  el.sunDisc.setAttribute("cy", String(arcs.sun.y));
-  el.sunDisc.setAttribute("r", String(sunR));
-  el.sunDisc.setAttribute("opacity", sunAbove ? "1" : "0.35");
-  el.sunDisc.style.filter = `drop-shadow(0 0 ${7 + snap.glow.alpha * 16}px rgba(${rgb},0.9))`;
-
-  const moonR = arcs.moon.diameter / 2;
-  const moonAbove = arcs.moon.y < arcs.horizonY;
-  const moonOp = moonAbove ? "1" : "0.35";
-  for (const node of [el.moonOutline, el.moonLit]) {
-    node.setAttribute("cx", String(arcs.moon.x));
-    node.setAttribute("cy", String(arcs.moon.y));
-    node.setAttribute("r", String(moonR));
-    node.setAttribute("opacity", moonOp);
-  }
-  el.moonClipRect.setAttribute("x", String(arcs.moon.x - moonR));
-  el.moonClipRect.setAttribute("y", String(arcs.moon.y - moonR));
-  el.moonClipRect.setAttribute("width", String(Math.max(0, arcs.moon.fillWidth)));
-  el.moonClipRect.setAttribute("height", String(arcs.moon.diameter));
-
-  el.nowLine.style.left = `${(snap.hour / 24) * 100}%`;
+  sky.update(snap, { live });
   el.caption.textContent = snap.caption;
 
   // swatch
@@ -526,13 +485,6 @@ function bind() {
     };
     el.dial.addEventListener("pointermove", move);
     el.dial.addEventListener("pointerup", up);
-  });
-
-  // click chart → hour
-  el.arcStack.addEventListener("click", (e) => {
-    const rect = el.arcStack.getBoundingClientRect();
-    const h = ((e.clientX - rect.left) / rect.width) * 24;
-    setHour(h);
   });
 
   // live tick
