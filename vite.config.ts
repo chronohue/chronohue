@@ -29,6 +29,10 @@ export default defineConfig({
     alias: [
       { find: "@circahue/widget/sky.css", replacement: `${widget}/src/sky.css` },
       { find: "@circahue/widget", replacement: `${widget}/src/index.ts` },
+      {
+        find: "@igrs/circahue",
+        replacement: fileURLToPath(new URL("./src/index.ts", import.meta.url)),
+      },
     ],
   },
   server: {
