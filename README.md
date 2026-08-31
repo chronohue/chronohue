@@ -18,10 +18,10 @@ npm install circahue
 
 Core stays framework-free. For a 30-second drop-in:
 
-| Host             | Package                                                                      | Fast path                         |
-| ---------------- | ---------------------------------------------------------------------------- | --------------------------------- |
-| Tailwind v3 / v4 | [`@circahue/tailwind`](https://github.com/circahue/circahue-tailwind)       | `start()` + `bg-accent`           |
-| Svelte 5         | [`@circahue/svelte`](https://github.com/circahue/circahue-svelte)           | `start()` / `$hue` / `<CircaHue>` |
+| Host             | Package                                                                 | Fast path                         |
+| ---------------- | ----------------------------------------------------------------------- | --------------------------------- |
+| Tailwind v3 / v4 | [`@circahue/tailwind`](https://github.com/circahue/circahue-tailwind)   | `start()` + `bg-accent`           |
+| Svelte 5         | [`@circahue/svelte`](https://github.com/circahue/circahue-svelte)       | `start()` / `$hue` / `<CircaHue>` |
 | Bootstrap 5      | [`@circahue/bootstrap`](https://github.com/circahue/circahue-bootstrap) | `start()` + `.btn-primary`        |
 
 Local siblings next to this repo: `../tailwind-adapter`, `../svelte5-adapter`, `../bootstrap-adapter`.

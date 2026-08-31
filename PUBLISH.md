@@ -2,8 +2,8 @@
 
 |                  |                                                                 |
 | ---------------- | --------------------------------------------------------------- |
-| **npm package**  | `circahue` (unscoped — the canonical name)                       |
-| **Adapters**     | `@circahue/svelte`, `@circahue/tailwind`, `@circahue/bootstrap`  |
+| **npm package**  | `circahue` (unscoped — the canonical name)                      |
+| **Adapters**     | `@circahue/svelte`, `@circahue/tailwind`, `@circahue/bootstrap` |
 | **Organization** | [circahue](https://www.npmjs.com/org/circahue)                  |
 | **GitHub**       | https://github.com/circahue/circahue                            |
 | **Demo**         | https://circahue.isamarin.xyz/                                  |
@@ -65,12 +65,12 @@ Page after publish: https://www.npmjs.com/package/circahue
 
 Only after §1 succeeds:
 
-| Repo | File | Change |
-| ---- | ---- | ------ |
-| `lri-drop` | `package.json` | `"@igrs/circahue": "^0.1"` → `"circahue": "^1"` |
-| `blacklight` | `packages/desktop-tauri/package.json` | `"@igrs/circahue": "^0.1.1"` → `"circahue": "^1"` |
+| Repo         | File                                           | Change                                                                    |
+| ------------ | ---------------------------------------------- | ------------------------------------------------------------------------- |
+| `lri-drop`   | `package.json`                                 | `"@igrs/circahue": "^0.1"` → `"circahue": "^1"`                           |
+| `blacklight` | `packages/desktop-tauri/package.json`          | `"@igrs/circahue": "^0.1.1"` → `"circahue": "^1"`                         |
 | `blacklight` | `packages/desktop-tauri/src/lib/appearance.ts` | `from '@igrs/circahue'` → `from 'circahue'` (also the comment on line 17) |
-| `lri-drop` | `docs/index.html`, `docs/i18n.js` | link text `@igrs/circahue` → `circahue` |
+| `lri-drop`   | `docs/index.html`, `docs/i18n.js`              | link text `@igrs/circahue` → `circahue`                                   |
 
 Then regenerate lockfiles (`npm install` / `pnpm install`) and confirm both
 builds pass before committing.

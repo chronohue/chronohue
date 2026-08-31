@@ -6,7 +6,14 @@ import tseslint from "typescript-eslint";
 
 export default tseslint.config(
   {
-    ignores: ["dist/**", "site/**", "circahue-widget/**", "node_modules/**", "coverage/**", "*.tgz"],
+    ignores: [
+      "dist/**",
+      "site/**",
+      "circahue-widget/**",
+      "node_modules/**",
+      "coverage/**",
+      "*.tgz",
+    ],
   },
   eslint.configs.recommended,
   ...tseslint.configs.recommendedTypeChecked,
