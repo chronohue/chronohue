@@ -1,6 +1,6 @@
 {
-  "name": "@igrs/circahue",
-  "version": "0.1.1",
+  "name": "circahue",
+  "version": "1.0.0",
   "description": "Circadian accent hues from clock time, season, and latitude — pure TypeScript, zero DOM",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -57,10 +57,9 @@
     "css-variables",
     "time-of-day",
     "circahue",
-    "light-hue",
-    "igrs"
+    "light-hue"
   ],
-  "author": "isamarin × BLMK",
+  "author": "isamarin × IGRS",
   "license": "MIT",
   "publishConfig": {
     "access": "public",

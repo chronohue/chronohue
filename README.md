@@ -3,15 +3,15 @@
 **Circadian accent hues** from clock time, season, and observer latitude.
 
 Pure TypeScript — **no DOM, no React, zero runtime deps**.  
-Born as the Luminat “living light” accent (code name _light-hue_); npm package **`@igrs/circahue`**.
+Born as the Lightmotiv “living light” accent (code name _light-hue_); npm package **`circahue`**.
 
 [![CI](https://github.com/circahue/circahue/actions/workflows/ci.yml/badge.svg)](https://github.com/circahue/circahue/actions/workflows/ci.yml)
-[![npm](https://img.shields.io/npm/v/@igrs/circahue.svg)](https://www.npmjs.com/package/@igrs/circahue)
+[![npm](https://img.shields.io/npm/v/circahue.svg)](https://www.npmjs.com/package/circahue)
 
 ## Install
 
 ```bash
-npm install @igrs/circahue
+npm install circahue
 ```
 
 ## Adapters
@@ -20,16 +20,16 @@ Core stays framework-free. For a 30-second drop-in:
 
 | Host             | Package                                                                      | Fast path                         |
 | ---------------- | ---------------------------------------------------------------------------- | --------------------------------- |
-| Tailwind v3 / v4 | [`@igrs/circahue-tailwind`](https://github.com/isamarin/circahue-tailwind)   | `start()` + `bg-accent`           |
-| Svelte 5         | [`@igrs/circahue-svelte`](https://github.com/isamarin/circahue-svelte)       | `start()` / `$hue` / `<CircaHue>` |
-| Bootstrap 5      | [`@igrs/circahue-bootstrap`](https://github.com/isamarin/circahue-bootstrap) | `start()` + `.btn-primary`        |
+| Tailwind v3 / v4 | [`@circahue/tailwind`](https://github.com/circahue/circahue-tailwind)       | `start()` + `bg-accent`           |
+| Svelte 5         | [`@circahue/svelte`](https://github.com/circahue/circahue-svelte)           | `start()` / `$hue` / `<CircaHue>` |
+| Bootstrap 5      | [`@circahue/bootstrap`](https://github.com/circahue/circahue-bootstrap) | `start()` + `.btn-primary`        |
 
 Local siblings next to this repo: `../tailwind-adapter`, `../svelte5-adapter`, `../bootstrap-adapter`.
 
 ## Quick start
 
 ```ts
-import { sampleLightHue, applyCssVars, createLightHueTicker } from "@igrs/circahue";
+import { sampleLightHue, applyCssVars, createLightHueTicker } from "circahue";
 
 const snap = sampleLightHue({
   latitude: 57.63, // e.g. Yaroslavl
