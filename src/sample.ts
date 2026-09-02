@@ -1,3 +1,4 @@
+import { solarAnchoredHour } from "./anchor.js";
 import { buildArcs } from "./arcs.js";
 import { buildCssVars } from "./css.js";
 import {
@@ -11,13 +12,20 @@ import {
 } from "./math.js";
 import { moonAgeDays, moonDeclination, moonEffHour, moonPhase, SYNODIC_MONTH } from "./moon.js";
 import { dayPhase, phaseLabel } from "./phase.js";
+import { solarEvents } from "./golden.js";
 import { seasonFactor, seasonShape, sunDiscRadius } from "./season.js";
 import { DEFAULT_LATITUDE, solarAltitude, solarDeclination } from "./solar.js";
 import { lightAt } from "./stops.js";
-import { formatZonedDateTime, zonedParts } from "./zoned.js";
+import { formatZonedDateTime, localHourInTimeZone, zonedParts } from "./zoned.js";
 import type { LightHueOptions, LightHueSnapshot } from "./types.js";
 
 const ARC_HEIGHT_DEFAULT = 286;
+
+/** Local fractional hour of an event instant, or null when there is no event. */
+function hourOf(at: Date | null, timeZone?: string): number | null {
+  if (at == null) return null;
+  return timeZone ? localHourInTimeZone(at, timeZone) : localHour(at);
+}
 
 function resolveLocale(opts: LightHueOptions): string {
   if (opts.locale) return opts.locale;
@@ -81,7 +89,24 @@ export function sampleLightHue(opts: LightHueOptions = {}): LightHueSnapshot {
       : zoned
         ? zoned.fractionalHour
         : localHour(at);
-  const light = lightAt(hour);
+
+  // Under `solar` the palette is read at a warped hour, so the observer's real
+  // sunrise gets the sunrise stop whatever the season and latitude.
+  let paletteHour = hour;
+  if (opts.hourMode === "solar") {
+    const events = solarEvents({
+      at,
+      latitude,
+      longitude: opts.longitude ?? 0,
+      timeZone,
+    });
+    paletteHour = solarAnchoredHour(hour, {
+      sunriseHour: hourOf(events.sunrise, timeZone),
+      noonHour: hourOf(events.solarNoon, timeZone) ?? 12,
+      sunsetHour: hourOf(events.sunset, timeZone),
+    });
+  }
+  const light = lightAt(paletteHour);
 
   const glowAlpha = light.a * shape.alphaMul;
   const glowBlur = light.blur * shape.blurMul;
@@ -93,7 +118,7 @@ export function sampleLightHue(opts: LightHueOptions = {}): LightHueSnapshot {
   const rgbStr = rgbCss(light.rgb);
   const ringStr = rgbCss(light.ring);
 
-  const phase = dayPhase(hour);
+  const phase = dayPhase(paletteHour);
   const doy = zoned?.dayOfYear ?? dayOfYear(at);
   const declSun = solarDeclination(at, doy);
   const sunAlt = solarAltitude(hour, declSun, latitude);
@@ -135,6 +160,7 @@ export function sampleLightHue(opts: LightHueOptions = {}): LightHueSnapshot {
 
   const snapshot: LightHueSnapshot = {
     hour,
+    paletteHour,
     hourInt: Math.round(hour) % 24,
     seasonFactor: sFactor,
     phase,

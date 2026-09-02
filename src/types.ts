@@ -31,9 +31,24 @@ export interface LightHueOptions {
   latitude?: number;
   /**
    * Observer longitude in degrees (positive east).
-   * Reserved for solar-noon / equation-of-time refinements; currently unused.
+   * Unused by the clock-hour palette; required for anything solar — event times
+   * and `hourMode: "solar"` — where it moves solar noon by four minutes per
+   * degree away from the zone meridian.
    */
   longitude?: number;
+  /**
+   * Which hour the palette is read at.
+   *
+   * `clock` (default, and the published behaviour) reads `DAY_STOPS` at the
+   * wall-clock hour: the sunrise colour is always at 6.5.
+   *
+   * `solar` stretches the palette's hour axis so the observer's real sunrise,
+   * solar noon and sunset land on the keyframes built for them. Needs
+   * `longitude` to be meaningful. Away from mid-latitude spring the two differ
+   * sharply: in Murmansk in June `clock` lights the sunrise hue at 06:30, five
+   * hours after the sun came up.
+   */
+  hourMode?: "clock" | "solar";
   /** Season shaping of glow intensity / sun disc size. Default `auto`. */
   season?: SeasonMode;
   /**
@@ -116,8 +131,14 @@ export interface ArcGeometry {
 }
 
 export interface LightHueSnapshot {
-  /** Effective local hour used for palette / markers [0, 24). */
+  /** Effective local wall-clock hour [0, 24). */
   hour: number;
+  /**
+   * Hour the palette and phase were actually read at. Equals `hour` under
+   * `hourMode: "clock"`; under `"solar"` it is `hour` warped onto the palette's
+   * axis, so it is a palette coordinate and not a time of day.
+   */
+  paletteHour: number;
   /** Rounded hour label 0–23. */
   hourInt: number;
   /** Season intensity [0 winter … 1 summer]. */

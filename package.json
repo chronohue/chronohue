@@ -20,11 +20,13 @@
   },
   "files": [
     "dist",
+    "vectors",
     "README.md",
     "LICENSE"
   ],
   "scripts": {
-    "build": "tsup src/index.ts --format esm,cjs --dts --clean",
+    "build": "tsup src/index.ts --format esm,cjs --dts --clean && node scripts/export-artifacts.mjs",
+    "artifacts": "node scripts/export-artifacts.mjs",
     "build:demo": "vite build",
     "dev": "vite",
     "test": "vitest run",

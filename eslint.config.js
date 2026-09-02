@@ -57,6 +57,14 @@ export default tseslint.config(
     },
   },
   {
+    // Build scripts run on the built dist, so type-aware linting has nothing to
+    // resolve them against.
+    files: ["scripts/**/*.mjs"],
+    extends: [tseslint.configs.disableTypeChecked],
+    languageOptions: { globals: { ...globals.node } },
+    rules: { "no-console": "off" },
+  },
+  {
     files: [
       "tests/**/*.ts",
       "dev/**/*.ts",

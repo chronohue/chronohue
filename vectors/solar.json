@@ -1,0 +1,910 @@
+{
+  "version": 1,
+  "note": "Reference values for the accurate solar path. Ports assert against these.",
+  "generator": "circahue scripts/export-artifacts.mjs",
+  "toleranceSeconds": 60,
+  "toleranceDegrees": 0.01,
+  "cases": [
+    {
+      "place": "Yaroslavl",
+      "at": "2026-03-20T12:00:00.000Z",
+      "latitude": 57.6261,
+      "longitude": 39.8845,
+      "timeZone": "Europe/Moscow",
+      "position": {
+        "altitudeDeg": 24.906879,
+        "declinationDeg": -0.043298,
+        "equationOfTimeMin": -7.432991,
+        "hourAngleDeg": 38.026252
+      },
+      "events": {
+        "sunrise": "2026-03-20T03:22:56.807Z",
+        "sunset": "2026-03-20T15:34:10.329Z",
+        "solarNoon": "2026-03-20T09:28:00.000Z",
+        "maxAltitudeDeg": 32.288875,
+        "minAltitudeDeg": -32.656594,
+        "alwaysAbove": false,
+        "alwaysBelow": false
+      },
+      "goldenHourWindows": [
+        {
+          "start": "2026-03-20T02:59:16.970Z",
+          "end": "2026-03-20T04:14:07.367Z",
+          "morning": true
+        },
+        {
+          "start": "2026-03-20T14:42:50.424Z",
+          "end": "2026-03-20T15:57:55.729Z",
+          "morning": false
+        }
+      ],
+      "currentOrNext": {
+        "start": "2026-03-20T14:42:50.424Z",
+        "end": "2026-03-20T15:57:55.729Z",
+        "morning": false
+      }
+    },
+    {
+      "place": "Yaroslavl",
+      "at": "2026-06-21T12:00:00.000Z",
+      "latitude": 57.6261,
+      "longitude": 39.8845,
+      "timeZone": "Europe/Moscow",
+      "position": {
+        "altitudeDeg": 45.675614,
+        "declinationDeg": 23.438052,
+        "equationOfTimeMin": -1.82428,
+        "hourAngleDeg": 39.42843
+      },
+      "events": {
+        "sunrise": "2026-06-21T00:20:07.854Z",
+        "sunset": "2026-06-21T18:24:23.508Z",
+        "solarNoon": "2026-06-21T09:22:00.000Z",
+        "maxAltitudeDeg": 55.811993,
+        "minAltitudeDeg": -8.936482,
+        "alwaysAbove": false,
+        "alwaysBelow": false
+      },
+      "goldenHourWindows": [
+        {
+          "start": "2026-06-20T23:39:29.698Z",
+          "end": "2026-06-21T01:29:47.058Z",
+          "morning": true
+        },
+        {
+          "start": "2026-06-21T17:14:44.340Z",
+          "end": "2026-06-21T19:05:01.550Z",
+          "morning": false
+        }
+      ],
+      "currentOrNext": {
+        "start": "2026-06-21T17:14:44.340Z",
+        "end": "2026-06-21T19:05:01.550Z",
+        "morning": false
+      }
+    },
+    {
+      "place": "Yaroslavl",
+      "at": "2026-09-02T12:00:00.000Z",
+      "latitude": 57.6261,
+      "longitude": 39.8845,
+      "timeZone": "Europe/Moscow",
+      "position": {
+        "altitudeDeg": 31.417195,
+        "declinationDeg": 7.801901,
+        "equationOfTimeMin": 0.300078,
+        "hourAngleDeg": 39.959519
+      },
+      "events": {
+        "sunrise": "2026-09-02T02:22:56.355Z",
+        "sunset": "2026-09-02T16:16:03.130Z",
+        "solarNoon": "2026-09-02T09:20:00.000Z",
+        "maxAltitudeDeg": 40.216363,
+        "minAltitudeDeg": -24.581324,
+        "alwaysAbove": false,
+        "alwaysBelow": false
+      },
+      "goldenHourWindows": [
+        {
+          "start": "2026-09-02T01:57:52.235Z",
+          "end": "2026-09-02T03:15:03.914Z",
+          "morning": true
+        },
+        {
+          "start": "2026-09-02T15:24:09.688Z",
+          "end": "2026-09-02T16:40:58.284Z",
+          "morning": false
+        }
+      ],
+      "currentOrNext": {
+        "start": "2026-09-02T15:24:09.688Z",
+        "end": "2026-09-02T16:40:58.284Z",
+        "morning": false
+      }
+    },
+    {
+      "place": "Yaroslavl",
+      "at": "2026-12-21T12:00:00.000Z",
+      "latitude": 57.6261,
+      "longitude": 39.8845,
+      "timeZone": "Europe/Moscow",
+      "position": {
+        "altitudeDeg": 2.199913,
+        "declinationDeg": -23.437309,
+        "equationOfTimeMin": 1.922968,
+        "hourAngleDeg": 40.365242
+      },
+      "events": {
+        "sunrise": "2026-12-21T06:01:50.575Z",
+        "sunset": "2026-12-21T12:35:06.837Z",
+        "solarNoon": "2026-12-21T09:18:00.000Z",
+        "maxAltitudeDeg": 8.936902,
+        "minAltitudeDeg": -55.807946,
+        "alwaysAbove": false,
+        "alwaysBelow": false
+      },
+      "goldenHourWindows": [
+        {
+          "start": "2026-12-21T05:29:37.261Z",
+          "end": "2026-12-21T07:33:16.694Z",
+          "morning": true
+        },
+        {
+          "start": "2026-12-21T11:03:40.730Z",
+          "end": "2026-12-21T13:07:20.136Z",
+          "morning": false
+        }
+      ],
+      "currentOrNext": {
+        "start": "2026-12-21T11:03:40.730Z",
+        "end": "2026-12-21T13:07:20.136Z",
+        "morning": false
+      }
+    },
+    {
+      "place": "Murmansk",
+      "at": "2026-03-20T12:00:00.000Z",
+      "latitude": 68.9585,
+      "longitude": 33.0827,
+      "timeZone": "Europe/Moscow",
+      "position": {
+        "altitudeDeg": 17.838117,
+        "declinationDeg": -0.043298,
+        "equationOfTimeMin": -7.432991,
+        "hourAngleDeg": 31.224452
+      },
+      "events": {
+        "sunrise": "2026-03-20T03:47:46.636Z",
+        "sunset": "2026-03-20T16:04:34.941Z",
+        "solarNoon": "2026-03-20T09:56:00.000Z",
+        "maxAltitudeDeg": 20.964004,
+        "minAltitudeDeg": -21.316767,
+        "alwaysAbove": false,
+        "alwaysBelow": false
+      },
+      "goldenHourWindows": [
+        {
+          "start": "2026-03-20T03:12:23.471Z",
+          "end": "2026-03-20T05:04:36.139Z",
+          "morning": true
+        },
+        {
+          "start": "2026-03-20T14:47:23.638Z",
+          "end": "2026-03-20T16:40:12.754Z",
+          "morning": false
+        }
+      ],
+      "currentOrNext": {
+        "start": "2026-03-20T14:47:23.638Z",
+        "end": "2026-03-20T16:40:12.754Z",
+        "morning": false
+      }
+    },
+    {
+      "place": "Murmansk",
+      "at": "2026-06-21T12:00:00.000Z",
+      "latitude": 68.9585,
+      "longitude": 33.0827,
+      "timeZone": "Europe/Moscow",
+      "position": {
+        "altitudeDeg": 40.441618,
+        "declinationDeg": 23.438052,
+        "equationOfTimeMin": -1.82428,
+        "hourAngleDeg": 32.62663
+      },
+      "events": {
+        "sunrise": null,
+        "sunset": null,
+        "solarNoon": "2026-06-21T09:49:00.000Z",
+        "maxAltitudeDeg": 44.479562,
+        "minAltitudeDeg": 2.395994,
+        "alwaysAbove": true,
+        "alwaysBelow": false
+      },
+      "goldenHourWindows": [
+        {
+          "start": "2026-06-20T21:00:00.000Z",
+          "end": "2026-06-21T00:13:09.299Z",
+          "morning": true
+        },
+        {
+          "start": "2026-06-21T19:25:47.142Z",
+          "end": "2026-06-21T21:00:00.000Z",
+          "morning": false
+        }
+      ],
+      "currentOrNext": {
+        "start": "2026-06-21T19:25:47.142Z",
+        "end": "2026-06-22T00:13:00.000Z",
+        "morning": false
+      }
+    },
+    {
+      "place": "Murmansk",
+      "at": "2026-09-02T12:00:00.000Z",
+      "latitude": 68.9585,
+      "longitude": 33.0827,
+      "timeZone": "Europe/Moscow",
+      "position": {
+        "altitudeDeg": 25.118684,
+        "declinationDeg": 7.801901,
+        "equationOfTimeMin": 0.300078,
+        "hourAngleDeg": 33.157719
+      },
+      "events": {
+        "sunrise": "2026-09-02T02:12:12.066Z",
+        "sunset": "2026-09-02T17:19:55.918Z",
+        "solarNoon": "2026-09-02T09:47:00.000Z",
+        "maxAltitudeDeg": 28.877097,
+        "minAltitudeDeg": -13.023788,
+        "alwaysAbove": false,
+        "alwaysBelow": false
+      },
+      "goldenHourWindows": [
+        {
+          "start": "2026-09-02T01:31:21.978Z",
+          "end": "2026-09-02T03:31:50.642Z",
+          "morning": true
+        },
+        {
+          "start": "2026-09-02T16:00:58.072Z",
+          "end": "2026-09-02T18:00:12.501Z",
+          "morning": false
+        }
+      ],
+      "currentOrNext": {
+        "start": "2026-09-02T16:00:58.072Z",
+        "end": "2026-09-02T18:00:12.501Z",
+        "morning": false
+      }
+    },
+    {
+      "place": "Murmansk",
+      "at": "2026-12-21T12:00:00.000Z",
+      "latitude": 68.9585,
+      "longitude": 33.0827,
+      "timeZone": "Europe/Moscow",
+      "position": {
+        "altitudeDeg": -5.550649,
+        "declinationDeg": -23.437309,
+        "equationOfTimeMin": 1.922968,
+        "hourAngleDeg": 33.563442
+      },
+      "events": {
+        "sunrise": null,
+        "sunset": null,
+        "solarNoon": "2026-12-21T09:46:00.000Z",
+        "maxAltitudeDeg": -2.395523,
+        "minAltitudeDeg": -44.475664,
+        "alwaysAbove": false,
+        "alwaysBelow": true
+      },
+      "goldenHourWindows": [
+        {
+          "start": "2026-12-21T08:10:33.345Z",
+          "end": "2026-12-21T11:20:00.000Z",
+          "morning": true
+        }
+      ],
+      "currentOrNext": {
+        "start": "2026-12-22T08:12:00.000Z",
+        "end": "2026-12-22T11:21:21.048Z",
+        "morning": false
+      }
+    },
+    {
+      "place": "Longyearbyen",
+      "at": "2026-03-20T12:00:00.000Z",
+      "latitude": 78.2232,
+      "longitude": 15.6469,
+      "timeZone": "Arctic/Longyearbyen",
+      "position": {
+        "altitudeDeg": 11.389517,
+        "declinationDeg": -0.043298,
+        "equationOfTimeMin": -7.432991,
+        "hourAngleDeg": 13.788652
+      },
+      "events": {
+        "sunrise": "2026-03-20T04:51:41.261Z",
+        "sunset": "2026-03-20T17:21:59.100Z",
+        "solarNoon": "2026-03-20T11:06:00.000Z",
+        "maxAltitudeDeg": 11.71853,
+        "minAltitudeDeg": -12.033022,
+        "alwaysAbove": false,
+        "alwaysBelow": false
+      },
+      "goldenHourWindows": [
+        {
+          "start": "2026-03-20T03:48:37.957Z",
+          "end": "2026-03-20T07:10:52.932Z",
+          "morning": true
+        },
+        {
+          "start": "2026-03-20T15:01:43.666Z",
+          "end": "2026-03-20T18:25:59.211Z",
+          "morning": false
+        }
+      ],
+      "currentOrNext": {
+        "start": "2026-03-20T15:01:43.666Z",
+        "end": "2026-03-20T18:25:59.211Z",
+        "morning": false
+      }
+    },
+    {
+      "place": "Longyearbyen",
+      "at": "2026-06-21T12:00:00.000Z",
+      "latitude": 78.2232,
+      "longitude": 15.6469,
+      "timeZone": "Arctic/Longyearbyen",
+      "position": {
+        "altitudeDeg": 34.757267,
+        "declinationDeg": 23.438052,
+        "equationOfTimeMin": -1.82428,
+        "hourAngleDeg": 15.19083
+      },
+      "events": {
+        "sunrise": null,
+        "sunset": null,
+        "solarNoon": "2026-06-21T10:59:00.000Z",
+        "maxAltitudeDeg": 35.214884,
+        "minAltitudeDeg": 11.66081,
+        "alwaysAbove": true,
+        "alwaysBelow": false
+      },
+      "goldenHourWindows": [],
+      "currentOrNext": null
+    },
+    {
+      "place": "Longyearbyen",
+      "at": "2026-09-02T12:00:00.000Z",
+      "latitude": 78.2232,
+      "longitude": 15.6469,
+      "timeZone": "Arctic/Longyearbyen",
+      "position": {
+        "altitudeDeg": 19.119306,
+        "declinationDeg": 7.801901,
+        "equationOfTimeMin": 0.300078,
+        "hourAngleDeg": 15.721919
+      },
+      "events": {
+        "sunrise": "2026-09-02T01:45:30.261Z",
+        "sunset": "2026-09-02T20:00:46.795Z",
+        "solarNoon": "2026-09-02T10:56:00.000Z",
+        "maxAltitudeDeg": 19.594786,
+        "minAltitudeDeg": -3.77677,
+        "alwaysAbove": false,
+        "alwaysBelow": false
+      },
+      "goldenHourWindows": [
+        {
+          "start": "2026-09-01T22:00:00.000Z",
+          "end": "2026-09-02T04:22:42.318Z",
+          "morning": true
+        },
+        {
+          "start": "2026-09-02T17:27:40.426Z",
+          "end": "2026-09-02T22:00:00.000Z",
+          "morning": false
+        }
+      ],
+      "currentOrNext": {
+        "start": "2026-09-02T17:27:40.426Z",
+        "end": "2026-09-02T22:22:16.310Z",
+        "morning": false
+      }
+    },
+    {
+      "place": "Longyearbyen",
+      "at": "2026-12-21T12:00:00.000Z",
+      "latitude": 78.2232,
+      "longitude": 15.6469,
+      "timeZone": "Arctic/Longyearbyen",
+      "position": {
+        "altitudeDeg": -12.091993,
+        "declinationDeg": -23.437309,
+        "equationOfTimeMin": 1.922968,
+        "hourAngleDeg": 16.127642
+      },
+      "events": {
+        "sunrise": null,
+        "sunset": null,
+        "solarNoon": "2026-12-21T10:55:00.000Z",
+        "maxAltitudeDeg": -11.660394,
+        "minAltitudeDeg": -35.214597,
+        "alwaysAbove": false,
+        "alwaysBelow": true
+      },
+      "goldenHourWindows": [],
+      "currentOrNext": null
+    },
+    {
+      "place": "Quito",
+      "at": "2026-03-20T12:00:00.000Z",
+      "latitude": -0.1807,
+      "longitude": -78.4678,
+      "timeZone": "America/Guayaquil",
+      "position": {
+        "altitudeDeg": 9.674039,
+        "declinationDeg": -0.043298,
+        "equationOfTimeMin": -7.432991,
+        "hourAngleDeg": -80.326048
+      },
+      "events": {
+        "sunrise": "2026-03-20T11:17:58.807Z",
+        "sunset": "2026-03-20T23:24:29.607Z",
+        "solarNoon": "2026-03-20T17:21:00.000Z",
+        "maxAltitudeDeg": 89.766762,
+        "minAltitudeDeg": -89.65278,
+        "alwaysAbove": false,
+        "alwaysBelow": false
+      },
+      "goldenHourWindows": [
+        {
+          "start": "2026-03-20T11:05:18.876Z",
+          "end": "2026-03-20T11:45:18.404Z",
+          "morning": true
+        },
+        {
+          "start": "2026-03-20T22:57:10.017Z",
+          "end": "2026-03-20T23:37:09.533Z",
+          "morning": false
+        }
+      ],
+      "currentOrNext": {
+        "start": "2026-03-20T22:57:10.017Z",
+        "end": "2026-03-20T23:37:09.533Z",
+        "morning": false
+      }
+    },
+    {
+      "place": "Quito",
+      "at": "2026-06-21T12:00:00.000Z",
+      "latitude": -0.1807,
+      "longitude": -78.4678,
+      "timeZone": "America/Guayaquil",
+      "position": {
+        "altitudeDeg": 10.079047,
+        "declinationDeg": 23.438052,
+        "equationOfTimeMin": -1.82428,
+        "hourAngleDeg": -78.92387
+      },
+      "events": {
+        "sunrise": "2026-06-21T11:12:22.199Z",
+        "sunset": "2026-06-21T23:19:06.974Z",
+        "solarNoon": "2026-06-21T17:16:00.000Z",
+        "maxAltitudeDeg": 66.381563,
+        "minAltitudeDeg": -66.742455,
+        "alwaysAbove": false,
+        "alwaysBelow": false
+      },
+      "goldenHourWindows": [
+        {
+          "start": "2026-06-21T10:58:33.528Z",
+          "end": "2026-06-21T11:42:10.541Z",
+          "morning": true
+        },
+        {
+          "start": "2026-06-21T22:49:18.648Z",
+          "end": "2026-06-21T23:32:55.636Z",
+          "morning": false
+        }
+      ],
+      "currentOrNext": {
+        "start": "2026-06-21T22:49:18.648Z",
+        "end": "2026-06-21T23:32:55.636Z",
+        "morning": false
+      }
+    },
+    {
+      "place": "Quito",
+      "at": "2026-09-02T12:00:00.000Z",
+      "latitude": -0.1807,
+      "longitude": -78.4678,
+      "timeZone": "America/Guayaquil",
+      "position": {
+        "altitudeDeg": 11.473213,
+        "declinationDeg": 7.801901,
+        "equationOfTimeMin": 0.300078,
+        "hourAngleDeg": -78.392781
+      },
+      "events": {
+        "sunrise": "2026-09-02T11:10:19.091Z",
+        "sunset": "2026-09-02T23:16:41.052Z",
+        "solarNoon": "2026-09-02T17:14:00.000Z",
+        "maxAltitudeDeg": 82.096127,
+        "minAltitudeDeg": -82.275426,
+        "alwaysAbove": false,
+        "alwaysBelow": false
+      },
+      "goldenHourWindows": [
+        {
+          "start": "2026-09-02T10:57:32.048Z",
+          "end": "2026-09-02T11:37:54.074Z",
+          "morning": true
+        },
+        {
+          "start": "2026-09-02T22:49:06.737Z",
+          "end": "2026-09-02T23:29:27.748Z",
+          "morning": false
+        }
+      ],
+      "currentOrNext": {
+        "start": "2026-09-02T22:49:06.737Z",
+        "end": "2026-09-02T23:29:27.748Z",
+        "morning": false
+      }
+    },
+    {
+      "place": "Quito",
+      "at": "2026-12-21T12:00:00.000Z",
+      "latitude": -0.1807,
+      "longitude": -78.4678,
+      "timeZone": "America/Guayaquil",
+      "position": {
+        "altitudeDeg": 11.082035,
+        "declinationDeg": -23.437309,
+        "equationOfTimeMin": 1.922968,
+        "hourAngleDeg": -77.987058
+      },
+      "events": {
+        "sunrise": "2026-12-21T11:07:59.117Z",
+        "sunset": "2026-12-21T23:16:07.561Z",
+        "solarNoon": "2026-12-21T17:12:00.000Z",
+        "maxAltitudeDeg": 66.742947,
+        "minAltitudeDeg": -66.383076,
+        "alwaysAbove": false,
+        "alwaysBelow": false
+      },
+      "goldenHourWindows": [
+        {
+          "start": "2026-12-21T10:54:10.188Z",
+          "end": "2026-12-21T11:37:47.552Z",
+          "morning": true
+        },
+        {
+          "start": "2026-12-21T22:46:19.118Z",
+          "end": "2026-12-21T23:29:56.494Z",
+          "morning": false
+        }
+      ],
+      "currentOrNext": {
+        "start": "2026-12-21T22:46:19.118Z",
+        "end": "2026-12-21T23:29:56.494Z",
+        "morning": false
+      }
+    },
+    {
+      "place": "Sydney",
+      "at": "2026-03-20T12:00:00.000Z",
+      "latitude": -33.8688,
+      "longitude": 151.2093,
+      "timeZone": "Australia/Sydney",
+      "position": {
+        "altitudeDeg": -45.553538,
+        "declinationDeg": -0.043298,
+        "equationOfTimeMin": -7.432991,
+        "hourAngleDeg": 149.351052
+      },
+      "events": {
+        "sunrise": "2026-03-19T19:57:57.273Z",
+        "sunset": "2026-03-20T08:06:56.683Z",
+        "solarNoon": "2026-03-20T02:03:00.000Z",
+        "maxAltitudeDeg": 56.338326,
+        "minAltitudeDeg": -55.726297,
+        "alwaysAbove": false,
+        "alwaysBelow": false
+      },
+      "goldenHourWindows": [
+        {
+          "start": "2026-03-19T19:42:40.763Z",
+          "end": "2026-03-19T20:30:54.485Z",
+          "morning": true
+        },
+        {
+          "start": "2026-03-20T07:34:02.189Z",
+          "end": "2026-03-20T08:22:11.711Z",
+          "morning": false
+        }
+      ],
+      "currentOrNext": {
+        "start": "2026-03-20T19:43:26.975Z",
+        "end": "2026-03-20T20:31:40.924Z",
+        "morning": true
+      }
+    },
+    {
+      "place": "Sydney",
+      "at": "2026-06-21T12:00:00.000Z",
+      "latitude": -33.8688,
+      "longitude": 151.2093,
+      "timeZone": "Australia/Sydney",
+      "position": {
+        "altitudeDeg": -62.419597,
+        "declinationDeg": 23.438052,
+        "equationOfTimeMin": -1.82428,
+        "hourAngleDeg": 150.75323
+      },
+      "events": {
+        "sunrise": "2026-06-20T20:59:57.383Z",
+        "sunset": "2026-06-21T06:53:49.978Z",
+        "solarNoon": "2026-06-21T01:57:00.000Z",
+        "maxAltitudeDeg": 32.693307,
+        "minAltitudeDeg": -79.569143,
+        "alwaysAbove": false,
+        "alwaysBelow": false
+      },
+      "goldenHourWindows": [
+        {
+          "start": "2026-06-20T20:42:51.349Z",
+          "end": "2026-06-20T21:38:15.897Z",
+          "morning": true
+        },
+        {
+          "start": "2026-06-21T06:15:31.464Z",
+          "end": "2026-06-21T07:10:56.018Z",
+          "morning": false
+        }
+      ],
+      "currentOrNext": {
+        "start": "2026-06-21T20:43:04.379Z",
+        "end": "2026-06-21T21:38:28.866Z",
+        "morning": true
+      }
+    },
+    {
+      "place": "Sydney",
+      "at": "2026-09-02T12:00:00.000Z",
+      "latitude": -33.8688,
+      "longitude": 151.2093,
+      "timeZone": "Australia/Sydney",
+      "position": {
+        "altitudeDeg": -52.855026,
+        "declinationDeg": 7.801901,
+        "equationOfTimeMin": 0.300078,
+        "hourAngleDeg": 151.284319
+      },
+      "events": {
+        "sunrise": "2026-09-01T20:12:46.281Z",
+        "sunset": "2026-09-02T07:37:41.859Z",
+        "solarNoon": "2026-09-02T01:55:00.000Z",
+        "maxAltitudeDeg": 48.176004,
+        "minAltitudeDeg": -64.242861,
+        "alwaysAbove": false,
+        "alwaysBelow": false
+      },
+      "goldenHourWindows": [
+        {
+          "start": "2026-09-01T19:57:22.499Z",
+          "end": "2026-09-01T20:46:20.414Z",
+          "morning": true
+        },
+        {
+          "start": "2026-09-02T07:04:06.295Z",
+          "end": "2026-09-02T07:53:06.427Z",
+          "morning": false
+        }
+      ],
+      "currentOrNext": {
+        "start": "2026-09-02T19:56:04.404Z",
+        "end": "2026-09-02T20:44:58.210Z",
+        "morning": true
+      }
+    },
+    {
+      "place": "Sydney",
+      "at": "2026-12-21T12:00:00.000Z",
+      "latitude": -33.8688,
+      "longitude": 151.2093,
+      "timeZone": "Australia/Sydney",
+      "position": {
+        "altitudeDeg": -26.68173,
+        "declinationDeg": -23.437309,
+        "equationOfTimeMin": 1.922968,
+        "hourAngleDeg": 151.690042
+      },
+      "events": {
+        "sunrise": "2026-12-20T18:40:38.850Z",
+        "sunset": "2026-12-21T09:05:25.637Z",
+        "solarNoon": "2026-12-21T01:53:00.000Z",
+        "maxAltitudeDeg": 79.566595,
+        "minAltitudeDeg": -32.699854,
+        "alwaysAbove": false,
+        "alwaysBelow": false
+      },
+      "goldenHourWindows": [
+        {
+          "start": "2026-12-20T18:22:55.750Z",
+          "end": "2026-12-20T19:17:31.695Z",
+          "morning": true
+        },
+        {
+          "start": "2026-12-21T08:28:32.644Z",
+          "end": "2026-12-21T09:23:08.825Z",
+          "morning": false
+        }
+      ],
+      "currentOrNext": {
+        "start": "2026-12-21T18:23:24.442Z",
+        "end": "2026-12-21T19:18:00.639Z",
+        "morning": true
+      }
+    },
+    {
+      "place": "Anchorage",
+      "at": "2026-03-20T12:00:00.000Z",
+      "latitude": 61.2181,
+      "longitude": -149.9003,
+      "timeZone": "America/Anchorage",
+      "position": {
+        "altitudeDeg": -25.139567,
+        "declinationDeg": -0.043298,
+        "equationOfTimeMin": -7.432991,
+        "hourAngleDeg": -151.758548
+      },
+      "events": {
+        "sunrise": "2026-03-20T15:59:53.962Z",
+        "sunset": "2026-03-21T04:15:23.358Z",
+        "solarNoon": "2026-03-20T22:07:00.000Z",
+        "maxAltitudeDeg": 28.905201,
+        "minAltitudeDeg": -28.856216,
+        "alwaysAbove": false,
+        "alwaysBelow": false
+      },
+      "goldenHourWindows": [
+        {
+          "start": "2026-03-20T15:33:33.364Z",
+          "end": "2026-03-20T16:56:50.602Z",
+          "morning": true
+        },
+        {
+          "start": "2026-03-21T03:18:14.721Z",
+          "end": "2026-03-21T04:41:51.309Z",
+          "morning": false
+        }
+      ],
+      "currentOrNext": {
+        "start": "2026-03-20T15:33:33.364Z",
+        "end": "2026-03-20T16:56:50.602Z",
+        "morning": true
+      }
+    },
+    {
+      "place": "Anchorage",
+      "at": "2026-06-21T12:00:00.000Z",
+      "latitude": 61.2181,
+      "longitude": -149.9003,
+      "timeZone": "America/Anchorage",
+      "position": {
+        "altitudeDeg": -2.023858,
+        "declinationDeg": 23.438052,
+        "equationOfTimeMin": -1.82428,
+        "hourAngleDeg": -150.35637
+      },
+      "events": {
+        "sunrise": "2026-06-21T12:20:15.142Z",
+        "sunset": "2026-06-22T07:42:43.892Z",
+        "solarNoon": "2026-06-21T22:02:00.000Z",
+        "maxAltitudeDeg": 52.218818,
+        "minAltitudeDeg": -5.343745,
+        "alwaysAbove": false,
+        "alwaysBelow": false
+      },
+      "goldenHourWindows": [
+        {
+          "start": "2026-06-21T08:00:00.000Z",
+          "end": "2026-06-21T08:46:30.547Z",
+          "morning": false
+        },
+        {
+          "start": "2026-06-21T11:16:18.458Z",
+          "end": "2026-06-21T13:47:16.421Z",
+          "morning": true
+        },
+        {
+          "start": "2026-06-22T06:15:43.924Z",
+          "end": "2026-06-22T08:00:00.000Z",
+          "morning": false
+        }
+      ],
+      "currentOrNext": {
+        "start": "2026-06-21T11:16:18.458Z",
+        "end": "2026-06-21T13:47:16.421Z",
+        "morning": true
+      }
+    },
+    {
+      "place": "Anchorage",
+      "at": "2026-09-02T12:00:00.000Z",
+      "latitude": 61.2181,
+      "longitude": -149.9003,
+      "timeZone": "America/Anchorage",
+      "position": {
+        "altitudeDeg": -17.061873,
+        "declinationDeg": 7.801901,
+        "equationOfTimeMin": 0.300078,
+        "hourAngleDeg": -149.825281
+      },
+      "events": {
+        "sunrise": "2026-09-02T14:54:35.333Z",
+        "sunset": "2026-09-03T05:02:04.750Z",
+        "solarNoon": "2026-09-02T21:59:00.000Z",
+        "maxAltitudeDeg": 36.431652,
+        "minAltitudeDeg": -20.949438,
+        "alwaysAbove": false,
+        "alwaysBelow": false
+      },
+      "goldenHourWindows": [
+        {
+          "start": "2026-09-02T14:26:20.664Z",
+          "end": "2026-09-02T15:52:44.216Z",
+          "morning": true
+        },
+        {
+          "start": "2026-09-03T04:04:14.343Z",
+          "end": "2026-09-03T05:30:07.115Z",
+          "morning": false
+        }
+      ],
+      "currentOrNext": {
+        "start": "2026-09-02T14:26:20.664Z",
+        "end": "2026-09-02T15:52:44.216Z",
+        "morning": true
+      }
+    },
+    {
+      "place": "Anchorage",
+      "at": "2026-12-21T12:00:00.000Z",
+      "latitude": 61.2181,
+      "longitude": -149.9003,
+      "timeZone": "America/Anchorage",
+      "position": {
+        "altitudeDeg": -46.795894,
+        "declinationDeg": -23.437309,
+        "equationOfTimeMin": 1.922968,
+        "hourAngleDeg": -149.419558
+      },
+      "events": {
+        "sunrise": "2026-12-21T19:14:22.134Z",
+        "sunset": "2026-12-22T00:41:24.014Z",
+        "solarNoon": "2026-12-21T21:58:00.000Z",
+        "maxAltitudeDeg": 5.344068,
+        "minAltitudeDeg": -52.218885,
+        "alwaysAbove": false,
+        "alwaysBelow": false
+      },
+      "goldenHourWindows": [
+        {
+          "start": "2026-12-21T18:35:00.000Z",
+          "end": "2026-12-22T01:21:23.013Z",
+          "morning": false
+        }
+      ],
+      "currentOrNext": {
+        "start": "2026-12-21T18:35:00.000Z",
+        "end": "2026-12-22T01:21:23.013Z",
+        "morning": false
+      }
+    }
+  ]
+}
