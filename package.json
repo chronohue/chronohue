@@ -1,5 +1,5 @@
 {
-  "name": "circahue",
+  "name": "chronohue",
   "version": "1.0.0",
   "description": "Circadian accent hues from clock time, season, and latitude — pure TypeScript, zero DOM",
   "type": "module",
@@ -42,12 +42,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/circahue/circahue.git"
+    "url": "git+https://github.com/chronohue/chronohue.git"
   },
   "bugs": {
-    "url": "https://github.com/circahue/circahue/issues"
+    "url": "https://github.com/chronohue/chronohue/issues"
   },
-  "homepage": "https://circahue.isamarin.xyz/",
+  "homepage": "https://chronohue.isamarin.xyz/",
   "keywords": [
     "circadian",
     "hue",
@@ -58,7 +58,7 @@
     "season",
     "css-variables",
     "time-of-day",
-    "circahue",
+    "chronohue",
     "light-hue"
   ],
   "author": "isamarin × IGRS",

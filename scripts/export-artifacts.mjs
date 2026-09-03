@@ -111,7 +111,7 @@ for (const place of PLACES) {
 const VECTORS = {
   version: 1,
   note: "Reference values for the accurate solar path. Ports assert against these.",
-  generator: "circahue scripts/export-artifacts.mjs",
+  generator: "chronohue scripts/export-artifacts.mjs",
   toleranceSeconds: 60,
   toleranceDegrees: 0.01,
   cases,

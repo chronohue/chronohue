@@ -2,16 +2,16 @@ import { existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { defineConfig } from "vite";
 
-// Local: sibling ../circahue-widget. CI: checked out at ./circahue-widget.
+// Local: sibling ../chronohue-widget. CI: checked out at ./chronohue-widget.
 function widgetRoot(): string {
   const candidates = [
-    fileURLToPath(new URL("./circahue-widget", import.meta.url)),
-    fileURLToPath(new URL("../circahue-widget", import.meta.url)),
+    fileURLToPath(new URL("./chronohue-widget", import.meta.url)),
+    fileURLToPath(new URL("../chronohue-widget", import.meta.url)),
   ];
   const found = candidates.find((dir) => existsSync(dir));
   if (!found) {
     throw new Error(
-      "circahue-widget not found. Clone https://github.com/circahue/widget next to this repo (or into ./circahue-widget).",
+      "chronohue-widget not found. Clone https://github.com/chronohue/widget next to this repo (or into ./chronohue-widget).",
     );
   }
   return found;
@@ -19,18 +19,18 @@ function widgetRoot(): string {
 
 const widget = widgetRoot();
 
-// GITHUB_PAGES=1 npm run build:demo → base /circahue/ for project Pages
+// GITHUB_PAGES=1 npm run build:demo → base /chronohue/ for project Pages
 const pages = process.env.GITHUB_PAGES === "1" || process.env.GITHUB_PAGES === "true";
 
 export default defineConfig({
   root: "dev",
-  base: pages ? "/circahue/" : "/",
+  base: pages ? "/chronohue/" : "/",
   resolve: {
     alias: [
-      { find: "@circahue/widget/sky.css", replacement: `${widget}/src/sky.css` },
-      { find: "@circahue/widget", replacement: `${widget}/src/index.ts` },
+      { find: "@chronohue/widget/sky.css", replacement: `${widget}/src/sky.css` },
+      { find: "@chronohue/widget", replacement: `${widget}/src/index.ts` },
       {
-        find: "@igrs/circahue",
+        find: "chronohue",
         replacement: fileURLToPath(new URL("./src/index.ts", import.meta.url)),
       },
     ],

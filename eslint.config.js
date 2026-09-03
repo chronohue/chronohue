@@ -9,7 +9,7 @@ export default tseslint.config(
     ignores: [
       "dist/**",
       "site/**",
-      "circahue-widget/**",
+      "chronohue-widget/**",
       "node_modules/**",
       "coverage/**",
       "*.tgz",

@@ -1,5 +1,5 @@
 /**
- * circahue playground — timezone, dial, sun/moon chart, reality check.
+ * chronohue playground — timezone, dial, sun/moon chart, reality check.
  */
 import {
   applyCssVars,
@@ -13,8 +13,8 @@ import {
   type LightHueSnapshot,
   type SeasonMode,
 } from "../src/index.ts";
-import { ARC_HEIGHT, mountSky, type SkyHandle } from "@circahue/widget";
-import "@circahue/widget/sky.css";
+import { ARC_HEIGHT, mountSky, type SkyHandle } from "@chronohue/widget";
+import "@chronohue/widget/sky.css";
 
 // ── Place presets (lat + IANA zone) ─────────────────────────────────────────
 
