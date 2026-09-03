@@ -1,4 +1,4 @@
-name: Redirect GitHub Pages to circahue.isamarin.xyz
+name: Redirect GitHub Pages to chronohue.isamarin.xyz
 
 on:
   push:

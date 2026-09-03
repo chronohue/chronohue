@@ -9,7 +9,7 @@ export default tseslint.config(
     ignores: [
       "dist/**",
       "site/**",
-      "circahue-widget/**",
+      "chronohue-widget/**",
       "node_modules/**",
       "coverage/**",
       "*.tgz",
@@ -55,6 +55,14 @@ export default tseslint.config(
       "no-var": "error",
       "prefer-const": "error",
     },
+  },
+  {
+    // Build scripts run on the built dist, so type-aware linting has nothing to
+    // resolve them against.
+    files: ["scripts/**/*.mjs"],
+    extends: [tseslint.configs.disableTypeChecked],
+    languageOptions: { globals: { ...globals.node } },
+    rules: { "no-console": "off" },
   },
   {
     files: [

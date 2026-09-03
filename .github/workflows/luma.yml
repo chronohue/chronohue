@@ -23,8 +23,8 @@ jobs:
       - name: Checkout sky widget
         uses: actions/checkout@v4
         with:
-          repository: circahue/widget
-          path: circahue-widget
+          repository: chronohue/widget
+          path: chronohue-widget
       - name: Install deploy key
         env:
           LUMA_SSH_KEY: ${{ secrets.LUMA_SSH_KEY }}

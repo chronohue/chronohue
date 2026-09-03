@@ -1,5 +1,5 @@
 /**
- * circahue — circadian accent hues from clock, season, and latitude.
+ * chronohue — circadian accent hues from clock, season, and latitude.
  * (Internal code name: light-hue. Luminat MainScreens design prototype.)
  *
  * Pure TypeScript: no DOM, no framework, zero runtime dependencies.
@@ -12,6 +12,20 @@ export { applyCssVars, buildCssVars, CSS_VAR_KEYS } from "./css.js";
 export { lightAt, DAY_STOPS } from "./stops.js";
 export { seasonFactor, seasonShape, sunDiscRadius, sunMarkerDiameter } from "./season.js";
 export { solarDeclination, solarAltitude, DEFAULT_LATITUDE } from "./solar.js";
+export { solarPosition, solarAltitudeAt, HORIZON_DEG } from "./ephemeris.js";
+export {
+  solarEvents,
+  goldenHourWindows,
+  currentOrNextGoldenHour,
+  GOLDEN_LOW_DEG,
+  GOLDEN_HIGH_DEG,
+} from "./golden.js";
+export {
+  solarAnchoredHour,
+  PALETTE_SUNRISE_HOUR,
+  PALETTE_NOON_HOUR,
+  PALETTE_SUNSET_HOUR,
+} from "./anchor.js";
 export {
   moonAgeDays,
   moonPhase,
@@ -63,3 +77,12 @@ export type { LightHueCssVar } from "./css.js";
 export type { TickerOptions } from "./ticker.js";
 export type { ZonedParts } from "./zoned.js";
 export type { SolarDayEvents } from "./events.js";
+export type { SolarPosition } from "./ephemeris.js";
+export type {
+  SolarEventTimes,
+  GoldenHourWindow,
+  SolarEventOptions,
+  GoldenHourOptions,
+  NextGoldenHourOptions,
+} from "./golden.js";
+export type { SolarAnchors } from "./anchor.js";
